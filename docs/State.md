@@ -1,6 +1,5 @@
-
+```
 {
-
     session:  {
     		currentUser: {
     			username: string
@@ -8,7 +7,6 @@
     			}
     		errors :  {}
     }
-
 	routes: {
 		routeId :  {
 			name: string
@@ -24,7 +22,6 @@
       comments: { comments }
     }
   }
-
   routeDetail: {
     routeId: {
       user_id: integer
@@ -34,7 +31,6 @@
 			comments: { comments }
     }
   }
-
   tripDetail: {
     routeId: {
       name: string
@@ -48,7 +44,6 @@
       pictures: images
     }
   }
-
 	friends: {
 		friendId: {
 			username: string
@@ -56,3 +51,5 @@
 			photo: img
 		}
 	}
+}
+```
