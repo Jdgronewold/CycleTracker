@@ -37,7 +37,14 @@ date            | string    | not null
 route_id        | integer   | not null, indexed
 user_id         | integer   | not null, indexed
 duration        | time      |
-gear_carried    | text      |
-pack_weight     | text      |
-weather_cond    | text      |
+gear            | text      |
+notes           | text      |
 pictures        | Object    |
+
+## Comments
+column name     | data type | details
+----------------|-----------|-----------------------
+user_id         | integer   | not null, indexed
+route_id        | integer   |
+trip_id         | integer   |
+body            | text      | not null
