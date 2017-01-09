@@ -3,7 +3,7 @@
 
 > Schema
 
-**Users**
+## Users
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
@@ -14,7 +14,7 @@ session_token   | string    | not null, indexed, unique
 home_lat        | float     | not null
 home_long       | float     | not null
 
-**Routes**
+## Routes
 column name     | data type | details
 ----------------|-----------|-----------------------
 name            | string    | not null
@@ -23,13 +23,13 @@ user_id         | integer   | not null, indexed
 mapOptions      | Object    | not null
 mileage         | float     | not null
 
-**Friends**
+## Friends
 column name     | data type | details
 ----------------|-----------|-----------------------
 user_id         | integer   | not null, indexed
 friend_id       | intege    | not null, indexed
 
-**Workouts**
+## Workouts
 column name     | data type | details
 ----------------|-----------|-----------------------
 name            | integer   | not null
