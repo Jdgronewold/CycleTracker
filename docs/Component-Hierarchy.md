@@ -50,7 +50,7 @@
 		 - Route path="routes/:routeID" component={RouteDetailCont}
 		 - Route path="create" component={CreateRouteContainer}
 	 - Route path="trips" component={tripContainer}
-     - Route path="create" component={CreateTripContainer}
-     - Route path="trips/:tripId" component={TripDetailContainer}
+    - Route path="create" component={CreateTripContainer}
+    - Route path="trips/:tripId" component={TripDetailContainer}
 	 - Route path="friends" component={FriendSearchCont}
 		 - Route path="/:friendId" component={FriendDetailCont}
