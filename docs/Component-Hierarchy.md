@@ -46,7 +46,6 @@
 		 - Route path="/login" component={SessionFormContainer}
 	 - Route path="user" component={UserContainer}
 		 - IndexRoute to="/home" component={Profile}
-      - 
 	 - Route path="routes" component={RouteIndexCont}
 		 - Route path="routes/:routeID" component={RouteDetailCont}
 		 - Route path="create" component={CreateRouteContainer}
