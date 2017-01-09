@@ -4,39 +4,40 @@
 > Schema
 
 **Users**
-column name | data type | details
-
- - username | string | null: false, index
- - password_digest | string | null: false
- - email | string | null: false
- - home_lat | float | null: false
- - home_long | float | null: false
- - session_token | string| null: false
- - timestamps
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+username        | string    | not null, indexed, unique
+email           | string    | not null, indexed, unique
+password_digest | string    | not null
+session_token   | string    | not null, indexed, unique
+home_lat        | float     | not null
+home_long       | float     | not null
 
 **Routes**
-column name | data type | details
-
- - name | string | null: false
- - description | text | null: false
- - user_id | integer| null: false, index
- - map | google map | <- not sure if pointers/route can be stored in this?
- - (might be a few more characteristics here)
- - timestamps
+column name     | data type | details
+----------------|-----------|-----------------------
+name            | string    | not null
+description     | text      | not null,
+user_id         | integer   | not null, indexed
+mapOptions      | Object    | not null
+mileage         | float     | not null
 
 **Friends**
-column name | data type | details
-
- - user_id | integer | null: false, index
- - friend_id | integer | null: false, index
+column name     | data type | details
+----------------|-----------|-----------------------
+user_id         | integer   | not null, indexed
+friend_id       | intege    | not null, indexed
 
 **Workouts**
-column name | data type | details
-
- - name | string | null: false
- - date | date | null: false
- - duration | time | null: false
- - route_id | integer | index
- - user_id | integer | null: false, index
- - activity | string | null: false
- - (might be a few more characteristics here)
+column name     | data type | details
+----------------|-----------|-----------------------
+name            | integer   | not null
+date            | string    | not null
+route_id        | integer   | not null, indexed
+user_id         | integer   | not null, indexed
+duration        | time      |
+gear_carried    | text      |
+pack_weight     | text      |
+weather_cond    | text      |
+pictures        | Object    |

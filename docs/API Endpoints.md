@@ -1,29 +1,55 @@
+# API Endpoints
 
+## HTML API
 
+### Root
 
-> API Endpoints
-TODO: Add routes to these endpoints
+- `GET /` - loads React web app
 
-HTML Endpoints
+## JSON API
 
- - Root: GET
+### Users
 
-JSON Endpoints
+- `POST /api/users`
+- `PATCH /api/users`
 
- - Users
-	 - Post
-	 - Patch
- - Session
-	 - Post
-	 - Delete
- - Routes
-	 - Post
-	 - Patch
-	 - Delete
-	 - Get
- - Workouts
-	 - Post
-	 - Patch
-	 - Delete
-	 - Get
+### Session
 
+- `POST /api/session`
+- `DELETE /api/session`
+
+### Routes
+
+- `GET /api/routes`
+  - Routes index/search
+- `POST /api/routes`
+  - Creating a hike
+- `GET /api/routes/:routeId`
+  - Viewing a particular hike
+- `PATCH /api/notes/:routeId`
+  - Update a particular hike
+- `DELETE /api/notes/:routeId`
+  - Delete a hike
+
+### Route comments
+
+- `POST /api/routes/:routeId/comments`
+- `DELETE /api/routes/:routeId/comments/:commentId`
+
+### Trip Reports
+
+- `GET /api/trips`
+- `POST /api/trips`
+- `GET /api/trips/:id`
+- `DELETE /api/trips/:id`
+
+### Trip comments
+
+- `POST /api/trips/:tripId/comments`
+- `DELETE /api/trips/:tripId/comments/:commentId`
+
+### Friends
+- `GET /api/friends`
+- `GET /api/friends/:friendId`
+- `POST /api/friends`
+- `DELETE /api/friends/:friendId`
