@@ -16,6 +16,8 @@ class NavBar extends React.Component {
     this.props.logout().then( () => hashHistory.push("welcome"));
   }
 
+
+
   render() {
     if (this.props.currentUser === null) {
       return(
