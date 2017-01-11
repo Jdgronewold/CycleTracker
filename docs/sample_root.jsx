@@ -43,10 +43,12 @@ const Root = ({ store }) => {
 
           <Route path="/hikes" component={Hike} onEnter={_redirectIfNotLoggedIn}>
             <Route path="hikes/:hikeId" component={MyHikeContainer} />
+            <Route path="hikes/create" component={CreateHikeContainer} />
           </Route>
 
           <Route path="/trips" component={Hike} onEnter={_redirectIfNotLoggedIn}>
             <Route path="trips/:tripId" component={MyHikeContainer} />
+            <Route path="trips/create" component={CreateTripContainer} />
           </Route>
 
         </Route>

@@ -35,7 +35,6 @@ class SignupForm extends React.Component {
         errorMsg = errorMsg + error;
       }
     });
-    console.log(errorMsg);
     return (
       <ul className="error-text">
         <li>{errorMsg}</li>

@@ -14,7 +14,7 @@ session_token   | string    | not null, indexed, unique
 home_lat        | float     | not null
 home_long       | float     | not null
 
-## Routes
+## Hikes
 column name     | data type | details
 ----------------|-----------|-----------------------
 name            | string    | not null

@@ -20,7 +20,6 @@ const Root = ({ store }) => {
 
   const _redirectIfNotLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
-    debugger;
     if(currentUser === null) {
       replace('welcome');
     }

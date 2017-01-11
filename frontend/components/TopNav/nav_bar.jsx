@@ -5,12 +5,16 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleClick(property) {
     return () => hashHistory.push(`welcome/${property}`);
   }
 
+  handleLogout() {
+    this.props.logout().then( () => hashHistory.push("welcome"));
+  }
 
   render() {
     if (this.props.currentUser === null) {
@@ -27,7 +31,14 @@ class NavBar extends React.Component {
       );
     } else {
       return (
-        <div>Stuff Goes here</div>
+        <div className="nav-bar-container">
+          <div className="nav-bar-left">
+            <Link to="home">Map My Hike</Link>
+          </div>
+          <div className="nav-bar-right">
+            <button onClick={this.handleLogout}>Log Out</button>
+          </div>
+        </div>
       );
     }
   }
