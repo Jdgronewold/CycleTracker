@@ -8,6 +8,7 @@ class LoginForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateState = this.updateState.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.guestDemo = this.guestDemo.bind(this);
   }
 
   redirect() {
@@ -25,8 +26,20 @@ class LoginForm extends React.Component {
     return (e) => { this.setState({[property]: e.currentTarget.value});};
   }
 
-  render() {
+  guestDemo(e) {
+    e.preventDefault();
+    const user = {username: "guest", password:"password"};
+    this.setState(user);
+    window.setTimeout(() => {
+      this.props.processForm(user)
+        .then(() => this.redirect());
+    }, 1000);
+  }
 
+  render() {
+    const logErrors = this.props.errors.map( (error, i) => (
+      <li key={i}>{error}</li>
+    ));
     return (
       <div className="form-container">
         <span className="form-switch">
@@ -34,26 +47,27 @@ class LoginForm extends React.Component {
           <Link to='/welcome/signup'>Join Now</Link>
         </span>
         <form className="form-box" onSubmit={this.handleSubmit}>
-          <label>Username
-            <br/>
-            <input
-              type="text"
-              onChange={this.updateState("username")}
-              value={this.state.username}
-              />
-          </label>
-          <br/>
-          <label>Password
-            <br/>
-            <input
-              type="password"
-              onChange={this.updateState("password")}
-              value={this.state.password}
-            />
-          </label>
+          <input
+            type="text"
+            onChange={this.updateState("username")}
+            value={this.state.username}
+            required
+            placeholder="username"
+          />
+          <input
+            type="password"
+            onChange={this.updateState("password")}
+            value={this.state.password}
+            required
+            placeholder="password"
+          />
+        <ul className="error-text">
+          { logErrors }
+        </ul>
           <button>Log In!</button>
         </form>
         <br/>
+        <button className="guest" onClick={this.guestDemo}>Guest Login</button>
       </div>
     );
   }

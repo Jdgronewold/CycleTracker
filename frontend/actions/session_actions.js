@@ -19,7 +19,6 @@ export const receiveErrors = (errors) => ({
 // ASYNC
 
 export const signup = (user) => dispatch => {
-  debugger
   return SessionAPI.signup(user)
     .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
     .fail(error => dispatch(receiveErrors(error.responseJSON)));

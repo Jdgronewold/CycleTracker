@@ -1,0 +1,28 @@
+.nav-bar-container {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: $off-white;
+}
+
+.nav-bar-right {
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+  align-items: center;
+  margin: 20px;
+}
+
+.nav-bar-right button {
+  margin: 10px;
+  height: 50px;
+  width: auto;
+  padding: 0px 10px;
+}
+
+.nav-bar-left {
+  font-size: 35px;
+  display: flex;
+  align-items: center;
+}

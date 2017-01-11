@@ -1,0 +1,18 @@
+input, textarea, select {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 40px;
+  margin: 15px 0;
+  padding: 0 5px;
+  font-family: inherit;
+  background: white;
+  box-sizing: border-box;
+}
+
+button {
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: $button;
+}

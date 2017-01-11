@@ -16,10 +16,7 @@ class Splash extends React.Component {
     const children = this.props.children;
     if(this.props.currentUser === null) {
       return (
-        <div>
-          <Link to={'welcome/signup'}>Sign Up</Link>
-          <br></br>
-          <Link to={'welcome/login'}>Log In</Link>
+        <div className="splash">
           { children }
         </div>
       );

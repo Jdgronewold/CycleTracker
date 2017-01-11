@@ -8,26 +8,39 @@ class SignupForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateState = this.updateState.bind(this);
     this.redirect = this.redirect.bind(this);
+    this._createErrors = this._createErrors.bind(this);
   }
 
   redirect() {
-    debugger;
     this.props.router.push("/home");
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    debugger;
     this.props.signup(user)
       .then(() => {
-        debugger;
         this.redirect();
       });
   }
 
   updateState(property) {
     return (e) => { this.setState({[property]: e.currentTarget.value});};
+  }
+
+  _createErrors(property) {
+    let errorMsg = "";
+    this.props.errors.forEach( error => {
+      if(error.includes(property)) {
+        errorMsg = errorMsg + error;
+      }
+    });
+    console.log(errorMsg);
+    return (
+      <ul className="error-text">
+        <li>{errorMsg}</li>
+      </ul>
+    );
   }
 
   render() {
@@ -38,46 +51,43 @@ class SignupForm extends React.Component {
           Please sign up or {' '}
           <Link to='/welcome/login'>Log In</Link>
         </span>
+        <br/>
         <form className="form-box" onSubmit={this.handleSubmit}>
-          <label>Username
-            <br/>
+          <input
+            type="text"
+            onChange={this.updateState("username")}
+            value={this.state.username}
+            required
+            placeholder="username"
+          />
+          {this._createErrors("Username")}
+          <input
+            type="password"
+            onChange={this.updateState("password")}
+            value={this.state.password}
+            required
+            placeholder="password"
+          />
+          {this._createErrors("Password")}
+          <input
+            type="email"
+            onChange={this.updateState("email")}
+            value={this.state.email}
+            required
+            placeholder="email"
+          />
+          {this._createErrors("Email")}
+          <label>Zipcode: &nbsp;&nbsp;
             <input
-              type="text"
-              onChange={this.updateState("username")}
-              value={this.state.username}
-              />
-          </label>
-          <br/>
-          <label>Password
-            <br/>
-            <input
-              type="password"
-              onChange={this.updateState("password")}
-              value={this.state.password}
+              type="number"
+              onChange={this.updateState("Zipcode")}
+              value={this.state.zipcode}
+              required
             />
           </label>
-          <br/>
-          <label>Email
-            <br/>
-            <input
-              type="text"
-              onChange={this.updateState("email")}
-              value={this.state.email}
-              />
-          </label>
-          <br/>
-            <label>Zipcode
-              <br/>
-              <input
-                type="number"
-                onChange={this.updateState("zipcode")}
-                value={this.state.zipcode}
-                />
-            </label>
-            <br/>
+          {this._createErrors("email")}
           <button>Sign Up!</button>
         </form>
-        <br/>
       </div>
     );
   }

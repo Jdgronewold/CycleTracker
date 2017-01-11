@@ -10,35 +10,18 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 
- .form-container {
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    width: 200px;
-    height: 250px;
-    padding: 10px 10px;
-    margin-top: 100px;
-    flex-direction: column;
-  }
+@import "base/reset.scss";
 
-  .form-box {
-    margin: 10px 10px;
-  }
+// Core
+@import "base/colors.scss";
+@import "base/fonts.scss";
+@import "base/layout.scss";
 
-  .form-switch{
-    margin: 10px 10px;
-  }
+// Grid
+@import "base/grid.scss";
 
-  #map-container {
-    width: 500px;
-    height: 500px;
-  }
-
-  .search-container {
-    display: flex;
-    flex-direction: row;
-  }
+// Components
+@import "components/*";

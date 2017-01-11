@@ -3,9 +3,9 @@ import SignupForm from './signup_form';
 import { signup, login } from '../../../actions/session_actions';
 
 
-const mapStateToProps = ({session, errors}) => ({
+const mapStateToProps = ({session}) => ({
   loggedIn: (session.currentUser === null ? true : false),
-  errors
+  errors: session.errors
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
