@@ -1,3 +1,5 @@
+API KEY: AIzaSyC8WD1gp_Vbo6zJh2p_xQbbt07lF81XLss
+
 import { Router, Route, IndexRoute, hashHistory, withRouter, IndexRedirect } from 'react-router';
 import { Provider } from 'react-redux';
 import React from 'react';

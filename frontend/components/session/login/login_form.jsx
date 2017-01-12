@@ -36,6 +36,14 @@ class LoginForm extends React.Component {
     }, 1000);
   }
 
+  logErrors() {
+    let errMsg = "";
+    if(this.props.errors.includes("Invalid")) {
+      errMsg = errMsg + this.props.errors[0];
+    }
+    return errMsg;
+  }
+
   render() {
     const logErrors = this.props.errors.map( (error, i) => (
       <li key={i}>{error}</li>
@@ -62,7 +70,7 @@ class LoginForm extends React.Component {
             placeholder="password"
           />
         <ul className="error-text">
-          { logErrors }
+          { this.logErrors() }
         </ul>
           <button>Log In!</button>
         </form>

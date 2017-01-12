@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import NavContainer from './TopNav/nav_container';
+import NavContainer from './topNav/nav_container';
 
 
 const App = ({children}) => (

@@ -1,7 +1,11 @@
 import React from 'react';
+import HomeNav from './home_nav';
 
-const Home = () => (
-  <div>Logged in!</div>
+const Home = ({children}) => (
+  <div>
+    <HomeNav />
+    { children }
+  </div>
 );
 
 export default Home;

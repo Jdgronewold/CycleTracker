@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link, hashHistory } from 'react-router';
+import { Link, hashHistory, withRouter } from 'react-router';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   handleClick(property) {
@@ -16,6 +17,10 @@ class NavBar extends React.Component {
     this.props.logout().then( () => hashHistory.push("welcome"));
   }
 
+  handleDemo() {
+    const user = {username: "guest", password: "password" };
+    this.props.login(user).then( () => this.props.router.push("/home"));
+  }
 
 
   render() {
@@ -28,6 +33,7 @@ class NavBar extends React.Component {
           <div className="nav-bar-right">
             <button onClick={this.handleClick("signup")}>Sign Up</button>
             <button onClick={this.handleClick("login")}>Log In</button>
+            <button onClick={this.handleDemo}>Demo</button>
           </div>
         </div>
       );
@@ -46,4 +52,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);
