@@ -10,7 +10,7 @@ export const fetchHike = (id) => (
   $.ajax({
     method: "GET",
     url: `api/hikes/${id}`,
-    data: { id }
+    data:  { id }
   })
 );
 

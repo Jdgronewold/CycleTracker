@@ -8,6 +8,7 @@ import LoginFormContainer from './session/login/login_form_container';
 import SplashContainer from './splash/splash_container';
 import HikeIndexContainer from './hikes/hikes_index_container';
 import HikeDetailContainer from './hikes/hike_detail_container';
+import HikeFormContainer from './hikes/hike_form_container';
 import SplashHome from './splash/splash_home';
 import Home from './home/home';
 
@@ -46,7 +47,8 @@ const Root = ({ store }) => {
           <Route path="home" component={Home} onEnter={_redirectIfNotLoggedIn} />
 
           <Route path="hikes" component={HikeIndexContainer} onEnter={_redirectIfNotLoggedIn}>
-            <Route path="hikes/:id" component={HikeDetailContainer} />
+            <Route path=":id" component={HikeDetailContainer} />
+            <Route path="create" component={HikeFormContainer} />
           </Route>
         </Route>
       </Router>

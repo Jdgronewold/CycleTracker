@@ -7,8 +7,9 @@ class MapDetail extends React.Component {
 
   updateDirections(mapPoints) {
     const origin = mapPoints[0].location;
-    const end = mapPoints[mapPoints.length - 1];
+    const end = mapPoints[mapPoints.length - 1].location;
     const waypoints = mapPoints.slice(1, -1);
+    // debugger
 
     const request = {
       origin: origin,
@@ -19,7 +20,7 @@ class MapDetail extends React.Component {
 
     this.directionsService.route( request, (result, status) => {
       if (status === 'OK') {
-        this.directionsRender.setMap(this.map);
+
         this.directionsRender.setDirections(result);
       }
     });
@@ -35,13 +36,15 @@ class MapDetail extends React.Component {
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
     this.directionsService = new google.maps.DirectionsService();
-    this.directionsRender = new google.maps.DirectionsRender();
+    this.directionsRender = new google.maps.DirectionsRenderer();
+    this.directionsRender.setMap(this.map);
 
     this.updateDirections(this.props.mapPoints);
   }
 
   componentDidUpdate() {
-    this.updateDirections();
+    // console.log(this.props.mapPoints)
+    this.updateDirections(this.props.mapPoints);
   }
 
 

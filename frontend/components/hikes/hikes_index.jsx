@@ -14,11 +14,9 @@ class HikeIndex extends React.Component {
   render() {
 
     const hikes = Object.keys(this.props.hikes).map( id => this.props.hikes[id]);
-    debugger
     const indexItems = hikes.map( (hike, idx) => {
-      debugger
       return (
-        <Link to={`/hikes/${hike.id}`} key={idx}>
+        <Link to={`hikes/${hike.id}`} key={idx}>
           <li>
             <StaticMap hikePath={this.props.hikes[ hike.id ].routePath} />
             <div className="static-overlay">{this.props.hikes[ hike.id ].title}</div>
@@ -35,6 +33,9 @@ class HikeIndex extends React.Component {
           <ul className="index-ul">
             { indexItems }
           </ul>
+          <div className="index-detail">
+            { this.props.children }
+          </div>
         </div>
       </div>
     );

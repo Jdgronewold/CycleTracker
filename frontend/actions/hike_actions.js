@@ -3,12 +3,18 @@ import * as HikeAPIUtils from '../utils/hike_api_utils';
 export const RECEIVE_HIKES = "RECEIVE_HIKES";
 export const RECEIVE_HIKE = "RECEIVE_HIKE";
 export const REMOVE_HIKE = "REMOVE_HIKE";
+export const ADD_HIKE = "ADD_HIKE";
 
 
 //SYNC
 export const receiveHikes = (hikes) => ({
   type: RECEIVE_HIKES,
   hikes
+});
+
+export const addHike = (hike) => ({
+  type: ADD_HIKE,
+  hike
 });
 
 export const receiveHike = (hike) => ({
@@ -32,7 +38,7 @@ export const fetchHike = (id) => dispatch => {
 };
 
 export const createHike = (hike) => dispatch => {
-  return HikeAPIUtils.createHike(hike).then(hike => dispatch(receiveHike(hike)));
+  return HikeAPIUtils.createHike(hike).then(hike => dispatch(addHike(hike)));
 };
 
 export const updateHike = (hike) => dispatch => {
