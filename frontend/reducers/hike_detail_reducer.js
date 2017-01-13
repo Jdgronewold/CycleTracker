@@ -8,7 +8,7 @@ const HikeDetailReducer = (state = {}, action) => {
     case RECEIVE_HIKE:
       return action.hike;
     case REMOVE_HIKE:
-      delete newState[action.hike.id];
+      delete newState[action.id];
       return newState;
     default:
       return state;

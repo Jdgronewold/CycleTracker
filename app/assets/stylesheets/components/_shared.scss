@@ -11,9 +11,14 @@ input, textarea, select {
   opacity: 1.0;
 }
 
-button {
-  height: 60px;
+button, input[type="submit"] {
+  height: auto;
+  width: 90%;
   border: 1px solid black;
   border-radius: 5px;
   background-color: $button;
+  padding: 10px;
+  margin: 10px;
+  font-size: auto;
+  text-align: center;
 }

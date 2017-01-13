@@ -47,8 +47,8 @@ const Root = ({ store }) => {
           <Route path="home" component={Home} onEnter={_redirectIfNotLoggedIn} />
 
           <Route path="hikes" component={HikeIndexContainer} onEnter={_redirectIfNotLoggedIn}>
-            <Route path=":id" component={HikeDetailContainer} />
             <Route path="create" component={HikeFormContainer} />
+            <Route path=":id" component={HikeDetailContainer} />
           </Route>
         </Route>
       </Router>

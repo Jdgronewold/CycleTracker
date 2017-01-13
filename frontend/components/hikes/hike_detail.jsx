@@ -1,5 +1,6 @@
 import React from 'react';
 import MapDetail from './map_detail';
+import { withRouter } from 'react-router';
 
 
 class HikeDetail extends React.Component {
@@ -20,7 +21,8 @@ class HikeDetail extends React.Component {
 
   handleDelete(e) {
     e.preventDefault();
-    this.props.deleteHike(this.props.hikeDetail.id);
+    this.props.deleteHike(this.props.hikeDetail.id)
+      .then(() => this.props.router.replace("/hikes"));
   }
 
   render() {
@@ -45,4 +47,4 @@ class HikeDetail extends React.Component {
   }
 }
 
-export default HikeDetail;
+export default withRouter(HikeDetail);

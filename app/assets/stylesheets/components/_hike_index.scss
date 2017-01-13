@@ -2,7 +2,31 @@
   display: flex;
   flex-direction: row;
 }
+.index-left {
+  flex: 1;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;;
+}
 
 .index-ul {
-  margin: 50px;
+  display: flex;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+
+.index-left button {
+  width: 100%;
+}
+
+.index-detail {
+  flex: 3;
+}
+
+.index-items {
+  padding: 10px;
+}
+
+.index-items img:hover {
+  box-shadow: 10px 10px grey;
 }

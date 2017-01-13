@@ -1,14 +1,19 @@
 import React from 'react';
 import StaticMap from './static_map.jsx';
-import { Link } from 'react-router';
+import { withRouter, Link } from 'react-router';
 
 class HikeIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.handleCreate = this.handleCreate.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchHikes();
+  }
+
+  handleCreate() {
+    this.props.router.push("/hikes/create");
   }
 
   render() {
@@ -17,7 +22,7 @@ class HikeIndex extends React.Component {
     const indexItems = hikes.map( (hike, idx) => {
       return (
         <Link to={`hikes/${hike.id}`} key={idx}>
-          <li>
+          <li className="index-items">
             <StaticMap hikePath={this.props.hikes[ hike.id ].routePath} />
             <div className="static-overlay">{this.props.hikes[ hike.id ].title}</div>
           </li>
@@ -30,9 +35,14 @@ class HikeIndex extends React.Component {
       <div>
         <h2>My Routes</h2>
         <div className="index-container">
-          <ul className="index-ul">
-            { indexItems }
-          </ul>
+          <div className="index-left">
+            <div>
+              <button onClick={this.handleCreate}> Create New </button>
+            </div>
+            <ul className="index-ul">
+              { indexItems }
+            </ul>
+        </div>
           <div className="index-detail">
             { this.props.children }
           </div>
@@ -42,4 +52,4 @@ class HikeIndex extends React.Component {
   }
 }
 
-export default HikeIndex;
+export default withRouter(HikeIndex);
