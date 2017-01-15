@@ -22,9 +22,9 @@ export const receiveHike = (hike) => ({
   hike
 });
 
-export const removeHike = (id) => ({
+export const removeHike = (hike) => ({
   type: REMOVE_HIKE,
-  id
+  hike
 });
 
 //ASYNC

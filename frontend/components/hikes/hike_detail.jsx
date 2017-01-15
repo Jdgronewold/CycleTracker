@@ -34,8 +34,12 @@ class HikeDetail extends React.Component {
       return(
         <div>
           <h2> {this.props.hikeDetail.title } </h2>
-          <button onClick={this.handleDelete}> Delete Hike </button>
-          <div>
+          <div className="detail-div">
+            <div className="detail-right">
+              <button onClick={this.handleDelete}> Delete Hike </button>
+              <br />
+              Distance: {this.props.hikeDetail.distance}
+            </div>
             <MapDetail
               mapPoints={JSON.parse(this.props.hikeDetail.mapPoints)}
               mapForm={false}

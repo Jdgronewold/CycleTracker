@@ -1,12 +1,15 @@
 .index-container {
   display: flex;
   flex-direction: row;
+  height: 100vh;
 }
 .index-left {
   flex: 1;
   margin: 50px;
   display: flex;
-  flex-direction: column;;
+  flex-direction: column;
+  overflow: scroll;
+  justify-content: center;
 }
 
 .index-ul {

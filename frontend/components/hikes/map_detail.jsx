@@ -9,6 +9,7 @@ class MapDetail extends React.Component {
   }
 
   updateDirections(mapPoints) {
+    debugger
     if(mapPoints.length === 0) {
       this.createNewMap();
 

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   attr_reader :password
 
   has_many :routes
+  has_many :workouts
 
   after_initialize :ensure_session_token
 

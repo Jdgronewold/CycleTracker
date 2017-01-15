@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import { RECEIVE_HIKES, ADD_HIKE } from '../actions/hike_actions';
+import { RECEIVE_HIKES, ADD_HIKE, REMOVE_HIKE } from '../actions/hike_actions';
 
 const _nullState = {
   title: "",
@@ -14,6 +14,9 @@ const HikesReducer = (state = {}, action) => {
       return merge(newState, action.hikes);
     case ADD_HIKE:
       newState[action.hike.id] = action.hike;
+      return newState;
+    case REMOVE_HIKE:
+      delete newState[action.hike.id];
       return newState;
     default:
       return state;

@@ -1,5 +1,6 @@
 import React from 'react';
 import MapForm from './map_detail';
+import { hashHistory } from 'react-router';
 
 
 class HikeForm extends React.Component {
@@ -29,10 +30,10 @@ class HikeForm extends React.Component {
   handleSubmit() {
     const hike = this.state;
     hike.mapPoints = JSON.stringify(this.state.mapPoints);
-    debugger;
     this.props.createHike(hike)
-    .then(() => this.setState(this.resetForm()))
-    .then(() => this.props.router.push(`/hikes/${hike.id}`));
+    .then((result) => {
+      hashHistory.push(`/hikes/${result.hike.id}`);
+    });
   }
 
   update(property) {
