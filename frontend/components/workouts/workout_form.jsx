@@ -1,9 +1,50 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
+import StaticMap from '../hikes/static_map';
 
 class WorkoutForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: "",
+      description: "",
+      notes: "",
+      distance: 0,
+      time: "00:00:00",
+      date: "",
+      routeId: 0
+    };
+    this.update = this.update.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.fetchHikes();
+  }
+
+  update(property) {
+    debugger
+    return (e) => this.setState({ [property]: e.currentTarget.value });
+  }
+
+  handleSubmit() {
+    const workout = this.state;
+    debugger
+    this.props.createWorkout(workout)
+    .then((result) => {
+      hashHistory.push(`/hikes/${result.workout.id}`);
+    });
+  }
+
+  renderMap() {
+    debugger
+    if(this.state.routeId !== 0) {
+      const hike = this.props.hikes[this.state.routeId];
+      debugger
+      return (
+        <StaticMap hikePath={hike.routePath} />
+      );
+    }
   }
 
   render() {
@@ -11,8 +52,8 @@ class WorkoutForm extends React.Component {
       return this.props.hikes[hikeId];
     });
 
-    const routeOptions = hikes.map( hike => (
-      <option value={hike.id} >{hike.title}</option>
+    const routeOptions = hikes.map( (hike, idx) => (
+      <option key={idx} value={hike.id} >{hike.title}</option>
     ));
     return(
       <div>
@@ -56,7 +97,7 @@ class WorkoutForm extends React.Component {
                 id="distance"
                 type="number"
                 value={this.state.number}
-                onChange={this.update("number")}
+                onChange={this.update("distance")}
                 />
             </div>
             <br />
@@ -84,14 +125,25 @@ class WorkoutForm extends React.Component {
 
             <div className="form-input-div">
               <label htmlFor="route">Route: </label>
-              <select value={this.state.route} onChange={this.update("route")}>
-
+              <select value={this.state.route} onChange={this.update("routeId")}>
+                <option disabled value="">select a route</option>
+                { routeOptions }
               </select>
             </div>
             <br />
 
+            <div className="form-input-div">
+              <input
+                type="submit"
+                onClick={this.handleSubmit}
+                value={"Create!"}
+                />
+            </div>
         </form>
+        { this.renderMap() }
       </div>
     );
   }
 }
+
+export default WorkoutForm;

@@ -11,6 +11,7 @@ import HikeDetailContainer from './hikes/hike_detail_container';
 import HikeFormContainer from './hikes/hike_form_container';
 import WorkoutIndexContainer from './workouts/workouts_index_container';
 import WorkoutDetailContainer from './workouts/workouts_detail_container';
+import WorkoutFormContainer from './workouts/workouts_form_container';
 import SplashHome from './splash/splash_home';
 import Home from './home/home';
 
@@ -54,6 +55,7 @@ const Root = ({ store }) => {
           </Route>
 
           <Route path="workouts" component={WorkoutIndexContainer} onEnter={_redirectIfNotLoggedIn}>
+            <Route path="create" component={WorkoutFormContainer} />
             <Route path=":id" component={WorkoutDetailContainer} />
           </Route>
         </Route>

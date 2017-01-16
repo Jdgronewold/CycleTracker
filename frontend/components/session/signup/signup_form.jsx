@@ -4,11 +4,19 @@ import { Link, withRouter } from 'react-router';
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "", email: "", zipcode: 94105 };
+    this.state = {
+      username: "",
+      password: "",
+      email: "",
+      zipcode: 94105,
+      photo: ""
+    };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateState = this.updateState.bind(this);
     this.redirect = this.redirect.bind(this);
     this._createErrors = this._createErrors.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
   }
 
   redirect() {
@@ -42,6 +50,19 @@ class SignupForm extends React.Component {
     );
   }
 
+  uploadImage(e) {
+    e.preventDefault();
+    cloudinary.openUploadWidget(
+      window.CLOUDINARY_OPTIONS,
+      (error, images) => {
+        debugger
+        if(error === null) {
+          this.setState({ picture: images[0].thumb_url});
+        }
+      }
+    );
+  }
+
   render() {
 
     return (
@@ -51,7 +72,7 @@ class SignupForm extends React.Component {
           <Link to='/welcome/login'>Log In</Link>
         </span>
         <br/>
-        <form className="form-box" onSubmit={this.handleSubmit}>
+        <form className="form-box">
           <input
             type="text"
             onChange={this.updateState("username")}
@@ -76,16 +97,19 @@ class SignupForm extends React.Component {
             placeholder="email"
           />
           {this._createErrors("Email")}
-          <label>Zipcode: &nbsp;&nbsp;
-            <input
-              type="number"
-              onChange={this.updateState("Zipcode")}
-              value={this.state.zipcode}
-              required
-            />
-          </label>
+          <div className="zip-image">
+            <label>Zipcode: &nbsp;&nbsp;
+              <input
+                type="number"
+                onChange={this.updateState("Zipcode")}
+                value={this.state.zipcode}
+                required
+                />
+            </label>
+            <button onClick={this.uploadImage}> Upload Picture</button>
+          </div>
           {this._createErrors("email")}
-          <button>Sign Up!</button>
+          <button onSubmit={this.handleSubmit}>Sign Up!</button>
         </form>
       </div>
     );
