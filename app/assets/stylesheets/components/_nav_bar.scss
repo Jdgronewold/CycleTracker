@@ -26,3 +26,38 @@
   display: flex;
   align-items: center;
 }
+
+#thmbnail {
+  height: auto;
+}
+
+.links-small {
+  padding: 10px;
+  font-size: 20px;
+  margin: auto 10px;
+}
+
+.links-small:hover {
+  text-decoration: underline;
+}
+
+.nav-drop {
+  position: absolute;
+  display: none;
+  top: 70px;
+  background-color: $light-grey;
+  width: 80%;
+}
+.nav-drop li {
+  margin: 5px auto;
+  padding: 2px 10px;
+  font-size: 16px;
+}
+.nav-drop li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.nav-bar-right:hover .nav-drop {
+  display: block;
+}

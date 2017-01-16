@@ -6,7 +6,6 @@ const WorkoutDetailReducer = (state = {}, action) => {
   const newState = merge({}, state);
   switch(action.type) {
     case RECEIVE_WORKOUT:
-      debugger
       return action.workout;
     default:
       return state;

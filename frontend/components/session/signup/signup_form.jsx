@@ -9,7 +9,7 @@ class SignupForm extends React.Component {
       password: "",
       email: "",
       zipcode: 94105,
-      photo: ""
+      picture: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,6 +26,7 @@ class SignupForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
+    debugger
     this.props.signup(user)
       .then(() => {
         this.redirect();
@@ -55,9 +56,9 @@ class SignupForm extends React.Component {
     cloudinary.openUploadWidget(
       window.CLOUDINARY_OPTIONS,
       (error, images) => {
-        debugger
         if(error === null) {
-          this.setState({ picture: images[0].thumb_url});
+          debugger
+          this.setState({ picture: images[0].thumbnail_url});
         }
       }
     );
@@ -101,7 +102,7 @@ class SignupForm extends React.Component {
             <label>Zipcode: &nbsp;&nbsp;
               <input
                 type="number"
-                onChange={this.updateState("Zipcode")}
+                onChange={this.updateState("zipcode")}
                 value={this.state.zipcode}
                 required
                 />
@@ -109,7 +110,7 @@ class SignupForm extends React.Component {
             <button onClick={this.uploadImage}> Upload Picture</button>
           </div>
           {this._createErrors("email")}
-          <button onSubmit={this.handleSubmit}>Sign Up!</button>
+          <button onClick={this.handleSubmit}>Sign Up!</button>
         </form>
       </div>
     );

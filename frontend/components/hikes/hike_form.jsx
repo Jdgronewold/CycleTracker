@@ -23,17 +23,27 @@ class HikeForm extends React.Component {
       description: "",
       distance: 0.0,
       mapPoints: [],
-      routePath: ""
+      routePath: "",
+      errorText: ""
     });
   }
 
   handleSubmit() {
+    if(this.state.mapPoints.length === 0) {
+      return this.errorText();
+    } else {
+
     const hike = this.state;
     hike.mapPoints = JSON.stringify(this.state.mapPoints);
     this.props.createHike(hike)
     .then((result) => {
       hashHistory.push(`/hikes/${result.hike.id}`);
     });
+    }
+  }
+
+  errorText() {
+    this.setState({errorText: "Must include waypoints!"});
   }
 
   update(property) {
@@ -103,6 +113,7 @@ class HikeForm extends React.Component {
                 value={"Create!"}
                 />
             </div>
+            <span className="error-text">{this.state.errorText}</span>
           </form>
         </div>
         <div className="form-content">

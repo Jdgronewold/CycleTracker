@@ -6,16 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create({username: "guest", password: "password", email: "guest@gmail.com", zipcode: 94105})
+User.create({username: "guest", password: "password", email: "guest@gmail.com", picture: "http://res.cloudinary.com/dggj2pmde/image/upload/c_thumb,g_center,r_30,w_125/v1484542818/pexels-photo-134705_dlcitb.jpg", zipcode: 94105})
 User.create({username: "Jeff", password: "password", email: "jeff@jeff.com", zipcode: 94105})
 
-
-Hike.create(title: "Bike around Golden Gate",
-  description: "Quick jaunt around a gorgeous park",
-  user_id: 1,
-  routePath: "mj|eF\`jqjVh@uAHc@Ai@Oa@@{AFMVHFDDFNO`A{@Xu@p@hAT\ITQZSVG\`@Il@w@bBS\`AUvAYl@IRCp@\`B[\`@@b@LzBjAxAb@hALv@@C\`@QdA}AMTBTLNTDR@vB?jCVp@pA\`BTj@Af@u@\`Ba@f@YHsGFwBnAsAh@q@j@g@z@s@f@a@f@g@bAATBVf@zAN~@Mf@c@|@AVF\`@\`AdALz@Gh@Yj@OLqBfAS\Kj@a@~EWf@IJ_@l@mB\`@e@\cDbD{BjDo@\_@Ba@Cu@_@gAkBUMSCWHQZEZDb@Z\z@d@NRPl@V~@TXXHb@ArB_@\FPTFd@u@dCkAjDGb@Dd@R\`@t@Zf@RVXXx@@rBCbBQ|@oAfCm@f@MF[JDXNp@Pf@dAzA~@\`A|@d@rElBf@d@Xd@Tv@Fp@RlGPfAlIf[VhAZpCDvBEpBe@jJe@|B_@v@Cd@oApGo@zFWlE?zCJbAl@~A\\R?pAi@vAy@vBkBtB_D~@}A^ST?j@\n@Nh@?Z^@Pe@~BeA|DS|C_@xD?l@NfC_@hC?j@LfBI|C[xAd@hBNVd@Th@I\`@k@f@{AdAiAd@k@Zo@\`@g@h@MbHjAl@b@Xh@PfABnFXv@\`BhBTb@|@vAf@X^BjAK\e@d@oAV[\`Bs@LGAMBcA?[ESIQc@[[UOWk@_AWOe@Cs@PoCrAUDUGKe@EwB}@{AwAyBs@[oDOYGu@i@OGqAC_@MKSAU|@uBVkAEaA[_AEc@\qAJcAX_@b@a@Xg@d@u@\iANaAA_AVkBPs@t@{ANqAa@iDo@qDO_@gAqAAc@j@}C@mECcBMw@_DqJE_AHi@Ri@rEmHP_@TsAj@wEjAiALa@Ac@UiAm@uAA_@He@\eAB]Ei@a@qBUi@c@_@}@g@kAsCs@eACk@z@yDn@uAfAu@Ra@LiCz@gDHmAI]e@k@OKYCw@J_A[cAi@a@c@U_@Om@WqAUYk@Cu@Tu@l@u@TcDj@c@G_@[Us@i@y@o@a@cAQe@e@g@eCE}@@qABu@Ea@Wk@YUqAYkBg@_AkAg@s@Kc@EOGy@d@eFLi@RWj@]bAe@PSVq@Bk@Uw@m@i@OYC]BWZm@HMHm@Ea@k@_BIq@H]n@gAh@a@^]P[Va@z@o@nAc@~@q@\Q^InDEzA?VMfAkBH_@Cm@_@o@g@m@a@i@S_A?qFYi@WKW?YN[f@o@x@]JyA?kAQm@O}BiAeA_@e@?SBeAT@e@DWTc@f@}BF]x@kBNgAFYRSP[?U[m@Sa@QQOb@i@p@i@XSKEIAU",
-  mapPoints: "[{\"location\":{\"lat\":37.83364941345965,\"lng\":-122.48228073120117},\"stopover\":false},{\"location\":{\"lat\":37.83453066053906,\"lng\":-122.50485420227051},\"stopover\":false},{\"location\":{\"lat\":37.832835945274034,\"lng\":-122.52219200134277},\"stopover\":false},{\"location\":{\"lat\":37.82320922404998,\"lng\":-122.5290584564209},\"stopover\":false},{\"location\":{\"lat\":37.826938032693626,\"lng\":-122.5100040435791},\"stopover\":false},{\"location\":{\"lat\":37.831954677951316,\"lng\":-122.49515533447266},\"stopover\":false},{\"location\":{\"lat\":37.83320031234118,\"lng\":-122.48070359230042},\"stopover\":false}]",
-  distance: 2.97)
 
 Hike.create(title: "Burrito Search",
   description: "The search for the best burrito continues....",

@@ -38,13 +38,21 @@ class NavBar extends React.Component {
         </div>
       );
     } else {
+      const photoSrc = this.props.currentUser.picture || "http://res.cloudinary.com/dggj2pmde/image/upload/c_thumb,g_center,r_30,w_125/v1484542818/pexels-photo-134705_dlcitb.jpg";
       return (
         <div className="nav-bar-container">
           <div className="nav-bar-left">
-            <Link to="home">Map My Hike</Link>
+            <Link className="links" to="home">Map My Hike</Link>
+            <div>
+              <Link className="links-small" to="hikes">Routes</Link>
+              <Link className="links-small" to="workouts">Workouts</Link>
+            </div>
           </div>
           <div className="nav-bar-right">
-            <button onClick={this.handleLogout}>Log Out</button>
+            <img id="thmbnail" src={photoSrc} alt={"User Photo"}></img>
+            <ul className="nav-drop">
+              <li onClick={this.handleLogout}> Log Out</li>
+            </ul>
           </div>
         </div>
       );

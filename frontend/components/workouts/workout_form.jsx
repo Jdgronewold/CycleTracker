@@ -23,13 +23,11 @@ class WorkoutForm extends React.Component {
   }
 
   update(property) {
-    debugger
     return (e) => this.setState({ [property]: e.currentTarget.value });
   }
 
   handleSubmit() {
     const workout = this.state;
-    debugger
     this.props.createWorkout(workout)
     .then((result) => {
       hashHistory.push(`/hikes/${result.workout.id}`);
@@ -37,10 +35,8 @@ class WorkoutForm extends React.Component {
   }
 
   renderMap() {
-    debugger
     if(this.state.routeId !== 0) {
       const hike = this.props.hikes[this.state.routeId];
-      debugger
       return (
         <StaticMap hikePath={hike.routePath} />
       );

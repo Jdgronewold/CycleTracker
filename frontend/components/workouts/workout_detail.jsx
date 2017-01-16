@@ -26,7 +26,6 @@ class WorkoutDetail extends React.Component {
   }
 
   render() {
-    debugger
     if(typeof this.props.workoutDetail.mapPoints === "undefined") {
       return(
         <div></div>
