@@ -1,6 +1,7 @@
 import React from 'react';
 import MapForm from './map_detail';
 import { hashHistory } from 'react-router';
+import merge from 'lodash/merge';
 
 
 class HikeForm extends React.Component {
@@ -43,7 +44,7 @@ class HikeForm extends React.Component {
   }
 
   errorText() {
-    this.setState({errorText: "Must include waypoints!"});
+    this.setState(merge({}, this.state, {errorText: "Must include waypoints!"}));
   }
 
   update(property) {

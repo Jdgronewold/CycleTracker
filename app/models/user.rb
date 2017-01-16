@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_many :routes
   has_many :workouts
+  has_many :out_friends, foreign_key: :user_id, class_name: :Friend
+  has_many :friends, through: :out_friends, source: :user
 
   after_initialize :ensure_session_token
 

@@ -26,7 +26,9 @@ class SignupForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    debugger
+    if(user.picture === null) {
+      user.picture = "http://res.cloudinary.com/dggj2pmde/image/upload/c_thumb,g_center,r_30,w_125/v1484542818/pexels-photo-134705_dlcitb.jpg";
+    }
     this.props.signup(user)
       .then(() => {
         this.redirect();
@@ -57,7 +59,6 @@ class SignupForm extends React.Component {
       window.CLOUDINARY_OPTIONS,
       (error, images) => {
         if(error === null) {
-          debugger
           this.setState({ picture: images[0].thumbnail_url});
         }
       }

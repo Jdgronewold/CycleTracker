@@ -14,19 +14,19 @@ export const fetchWorkout = (id) => (
   })
 );
 
-export const createWorkout = (hike) => (
+export const createWorkout = (workout) => (
   $.ajax({
     method: "POST",
     url: "api/workouts",
-    data: { hike }
+    data: { workout }
   })
 );
 
-export const updateWorkout = (hike) => (
+export const updateWorkout = (workout) => (
   $.ajax({
     method: "PATCH",
-    url: `api/workouts/${hike.id}`,
-    data: { hike }
+    url: `api/workouts/${workout.id}`,
+    data: { workout }
   })
 );
 

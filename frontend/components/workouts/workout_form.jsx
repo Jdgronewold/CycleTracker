@@ -10,7 +10,9 @@ class WorkoutForm extends React.Component {
       description: "",
       notes: "",
       distance: 0,
-      time: "00:00:00",
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
       date: "",
       routeId: 0
     };
@@ -98,14 +100,33 @@ class WorkoutForm extends React.Component {
             </div>
             <br />
 
-            <div className="form-input-div">
-              <label htmlFor="time">Time: </label>
+            <div className="form-input-time">
+              <label htmlFor="hours">Time: &nbsp; </label>
               <input
-                id="time"
-                type="time"
-                value={this.state.time}
-                onChange={this.update("time")}
-                />
+                id="hours"
+                type="number"
+                min="0"
+                max="60"
+                value={this.state.hours}
+                onChange={this.update("hours")}
+                /> : &nbsp;
+                <input
+                  id="minutes"
+                  type="number"
+                  min="0"
+                  max="59"
+                  value={this.state.minutes}
+                  onChange={this.update("minutes")}
+                  /> : &nbsp;
+                  <input
+                    id="seconds"
+                    type="number"
+                    min="0"
+                    max="59"
+                    required
+                    value={this.state.seconds}
+                    onChange={this.update("seconds")}
+                    />
             </div>
             <br />
 

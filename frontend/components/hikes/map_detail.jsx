@@ -86,6 +86,7 @@ class MapDetail extends React.Component {
   componentDidMount() {
     // For now load SF, wait to get some new seed data
     this.createNewMap();
+    console.log("mounted");
   }
 
   shouldComponentUpdate(nextProps, nextState) {

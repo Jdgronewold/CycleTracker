@@ -12,6 +12,7 @@ import HikeFormContainer from './hikes/hike_form_container';
 import WorkoutIndexContainer from './workouts/workouts_index_container';
 import WorkoutDetailContainer from './workouts/workouts_detail_container';
 import WorkoutFormContainer from './workouts/workouts_form_container';
+import FriendIndexContainer from './friends/friends_index_container';
 import SplashHome from './splash/splash_home';
 import Home from './home/home';
 
@@ -58,6 +59,10 @@ const Root = ({ store }) => {
             <Route path="create" component={WorkoutFormContainer} />
             <Route path=":id" component={WorkoutDetailContainer} />
           </Route>
+
+          <Route path="friends" component={FriendIndexContainer} onEnter={_redirectIfNotLoggedIn}>
+          </Route>
+
         </Route>
       </Router>
     </Provider>

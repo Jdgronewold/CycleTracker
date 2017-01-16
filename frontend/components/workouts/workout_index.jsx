@@ -1,16 +1,21 @@
 import React from 'react';
 import StaticMap from '../hikes/static_map';
-import { Link } from 'react-router';
+import { withRouter, Link } from 'react-router';
 
 
 class WorkoutIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.handleCreate = this.handleCreate.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchWorkouts();
     console.log(this.props.workouts);
+  }
+
+  handleCreate() {
+    this.props.router.push("/workouts/create");
   }
 
   render() {
@@ -46,4 +51,4 @@ class WorkoutIndex extends React.Component {
   }
 }
 
-export default WorkoutIndex;
+export default withRouter(WorkoutIndex);
