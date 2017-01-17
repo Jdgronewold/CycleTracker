@@ -7,7 +7,8 @@ const FriendsReducer = (state = {}, action) => {
   const newState = merge({}, state);
   switch(action.type) {
     case RECEIVE_FRIENDS:
-      return merge(newState, action.friends);
+      // return merge(newState, action.friends);
+      return action.friends;
     case ADD_FRIEND:
       const test = merge(newState, action.friend);
       return test;

@@ -11,7 +11,7 @@ const HikesReducer = (state = {}, action) => {
   const newState = merge({}, state);
   switch(action.type) {
     case RECEIVE_HIKES:
-      return merge(newState, action.hikes);
+      return  action.hikes;
     case ADD_HIKE:
       newState[action.hike.id] = action.hike;
       return newState;

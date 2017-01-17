@@ -1,13 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { withRouter, Link } from 'react-router';
 
 class FriendIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.handleFriend = this.handleFriend.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchFriends();
+  }
+
+  handleFriend(e) {
+    e.preventDefault();
+    this.props.router.push("friends/search");
   }
 
 
@@ -31,6 +37,7 @@ class FriendIndex extends React.Component {
       return(
         <div className="friend-container">
           <h3> My Friends </h3>
+          <button onClick={this.handleFriend}> Find Friends</button>
           <ul>
             {indexItems}
           </ul>
@@ -46,4 +53,4 @@ class FriendIndex extends React.Component {
   }
 }
 
-export default FriendIndex;
+export default withRouter(FriendIndex);

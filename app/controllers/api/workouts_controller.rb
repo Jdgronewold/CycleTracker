@@ -12,7 +12,6 @@ class Api::WorkoutsController < ApplicationController
   def create
     @workout = Workout.new(workout_params)
     @workout.user_id = current_user.id
-
     if @workout.save
       render :show
     else

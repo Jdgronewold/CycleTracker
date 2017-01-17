@@ -1,1 +1,1 @@
-json.extract! hike, :id, :title, :routePath
+json.extract! hike, :id, :title, :routePath, :distance

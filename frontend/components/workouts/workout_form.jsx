@@ -14,10 +14,12 @@ class WorkoutForm extends React.Component {
       minutes: 0,
       seconds: 0,
       date: "",
-      routeId: 0
+      route_id: 0,
+      time: ""
     };
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateRoute = this.updateRoute.bind(this);
   }
 
   componentDidMount(){
@@ -28,8 +30,14 @@ class WorkoutForm extends React.Component {
     return (e) => this.setState({ [property]: e.currentTarget.value });
   }
 
+  updateRoute(e) {
+    const hike_distance = this.props.hikes[parseInt(e.currentTarget.value)].distance;
+    this.setState({route_id: e.currentTarget.value, distance: hike_distance});
+  }
+
   handleSubmit() {
     const workout = this.state;
+    workout.time = `${workout.hours}:${workout.minutes}:${workout.seconds}`;
     this.props.createWorkout(workout)
     .then((result) => {
       hashHistory.push(`/hikes/${result.workout.id}`);
@@ -37,8 +45,8 @@ class WorkoutForm extends React.Component {
   }
 
   renderMap() {
-    if(this.state.routeId !== 0) {
-      const hike = this.props.hikes[this.state.routeId];
+    if(this.state.route_id !== 0) {
+      const hike = this.props.hikes[this.state.route_id];
       return (
         <StaticMap hikePath={hike.routePath} />
       );
@@ -94,7 +102,7 @@ class WorkoutForm extends React.Component {
               <input
                 id="distance"
                 type="number"
-                value={this.state.number}
+                value={this.state.distance}
                 onChange={this.update("distance")}
                 />
             </div>
@@ -142,7 +150,7 @@ class WorkoutForm extends React.Component {
 
             <div className="form-input-div">
               <label htmlFor="route">Route: </label>
-              <select value={this.state.route} onChange={this.update("routeId")}>
+              <select value={this.state.route} onChange={this.updateRoute}>
                 <option disabled value="">select a route</option>
                 { routeOptions }
               </select>

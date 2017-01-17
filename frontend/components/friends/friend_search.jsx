@@ -41,7 +41,7 @@ class FriendSearch extends React.Component {
 
     if (friends.length === 0) {
       return (
-        <div>
+        <div className="friend-search-container">
           <form>
             <input
               type="text"
@@ -49,8 +49,8 @@ class FriendSearch extends React.Component {
               onChange={this.handleQuery}
               placeholder="Search for a Biker"
               />
-            <button onClick={this.handleQuery}> Search </button>
           </form>
+          <span> Or, type &quot;all&quot; to see all users </span>
           <div className="friend-container">
             <ul>
               <li> No users match the search criteria </li>
@@ -62,7 +62,7 @@ class FriendSearch extends React.Component {
     }
 
     return(
-      <div>
+      <div className="friend-search-container">
         <form>
           <input
             type="text"
@@ -70,8 +70,8 @@ class FriendSearch extends React.Component {
             onChange={this.handleQuery}
             placeholder="Search for a Biker"
             />
-          <button onClick={this.handleQuery}> Search </button>
         </form>
+        <span> Or, type &quot;all&quot; to see all users </span>
         <div className="friend-container">
           <ul>
             { indexItems }

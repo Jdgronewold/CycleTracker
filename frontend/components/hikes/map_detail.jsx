@@ -24,7 +24,6 @@ class MapDetail extends React.Component {
         waypoints: waypoints,
         travelMode: 'DRIVING'
       };
-
       this.directionsService.route( request, (result, status) => {
         if (status === 'OK') {
           if(this.props.mapForm) {
@@ -33,9 +32,7 @@ class MapDetail extends React.Component {
 
           this.directionsRender.setDirections(result);
         } else {
-          console.log(this.props.id);
-          debugger
-          hashHistory.push(`hikes/${this.props.id}`);
+          console.log(this.props);
         }
       });
       // this.props.updateFromChild("mapRendered", true);
@@ -104,8 +101,10 @@ class MapDetail extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    this.updateDirections(this.props.mapPoints);
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.mapPoints[0].location.lat !== this.props.mapPoints[0].location.lat) {
+      this.updateDirections(this.props.mapPoints);
+    }
   }
 
 

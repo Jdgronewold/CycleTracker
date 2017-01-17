@@ -71,13 +71,15 @@ class FriendDetail extends React.Component {
               <br />
               { button }
               <br />
-              <h3> {this.props.friendDetail.username}{`'`}s Routes </h3>
-              <ul>
-                { routes }
-              </ul>
+              <div className="friend-element-container">
+                <h3> {this.props.friendDetail.username}{`'`}s Routes </h3>
+                <ul className="friend-routes">
+                  { routes }
+                </ul>
+              </div>
               <br />
               <h3> {this.props.friendDetail.username}{`'`}s Workouts </h3>
-              <ul>
+              <ul className="friend-workouts">
                 { workouts }
               </ul>
             </div>

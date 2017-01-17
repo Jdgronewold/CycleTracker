@@ -5,6 +5,8 @@ class Api::FriendsController < ApplicationController
 
   def show
     @friend = User.find(params[:id])
+    @workouts = @friend.workouts
+    @routes = @friend.routes
   end
 
   def create
@@ -28,7 +30,11 @@ class Api::FriendsController < ApplicationController
 
   def search
     if params[:query].present?
-      @friends = User.where("username ~ ?", params[:query]).where.not(id: current_user.id)
+      if params[:query] == "all"
+        @friends = User.all
+      else
+        @friends = User.where("username ~ ?", params[:query]).where.not(id: current_user.id)
+      end
     else
       @friends = User.none
     end
