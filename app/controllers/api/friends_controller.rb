@@ -11,8 +11,7 @@ class Api::FriendsController < ApplicationController
     @friend_join = Friend.new()
     @friend_join.user_id = current_user.id
     @friend_join.friend_id = params[:friend][:id]
-    @friends = User.find(params[:friend][:id])
-    debugger
+    @friends = [User.find(params[:friend][:id])]
     if @friend_join.save
       render :index
     else
@@ -22,7 +21,6 @@ class Api::FriendsController < ApplicationController
 
   def destroy
     friend_join = Friend.where(friend_id: params[:id]).where(user_id: current_user.id).limit(1)
-    debugger
     friend_join[0].destroy
     @friend = User.find(params[:id])
     render :show
@@ -30,7 +28,7 @@ class Api::FriendsController < ApplicationController
 
   def search
     if params[:query].present?
-      @friends = User.where("username ~ ?", params[:query])
+      @friends = User.where("username ~ ?", params[:query]).where.not(id: current_user.id)
     else
       @friends = User.none
     end

@@ -1,6 +1,7 @@
 import * as FriendAPIUtils from '../utils/friend_api_utils';
 
 export const RECEIVE_FRIENDS = "RECEIVE_FRIENDS";
+export const RECEIVE_CERTAIN_FRIENDS = "RECEIVE_CERTAIN_FRIENDS";
 export const RECEIVE_FRIEND = "RECEIVE_FRIEND";
 export const REMOVE_FRIEND = "REMOVE_FRIEND";
 export const ADD_FRIEND = "ADD_FRIEND";
@@ -27,6 +28,12 @@ export const addFriend = (friend) => ({
   friend
 });
 
+export const receiveCertainFriends = (friends) => ({
+  type: RECEIVE_CERTAIN_FRIENDS,
+  friends
+});
+
+
 // ASYNC
 
 export const fetchFriends = () => dispatch => {
@@ -51,5 +58,5 @@ export const deleteFriend = (id) => dispatch => {
 
 export const fetchCertainFriends = (query) => dispatch => {
   return FriendAPIUtils.fetchCertainFriends(query)
-    .then(friends => dispatch(receiveFriends(friends)));
+    .then(friends => dispatch(receiveCertainFriends(friends)));
 };

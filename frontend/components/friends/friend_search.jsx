@@ -9,38 +9,38 @@ class FriendSearch extends React.Component {
   }
 
   componentDidMount() {
-    debugger
-    this.props.fetchCertainFriends(this.state.query);
+    // this.props.fetchCertainFriends(this.state.query);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.query !== this.state.query) {
+      this.props.fetchCertainFriends(this.state.query);
+    }
   }
 
   handleQuery(e) {
-    debugger
     this.setState({ query: e.currentTarget.value });
-    this.props.fetchCertainFriends(this.state.query);
+    // this.props.fetchCertainFriends(this.state.query);
   }
 
   render() {
-    if(typeof this.props.friends === "undefined") {
+
+    const friends = Object.keys(this.props.friendSearch).map( friendId => {
+      return this.props.friendSearch[friendId];
+    });
+    const indexItems = friends.map( (friend, idx) => {
       return (
-        <div></div>
+        <Link to={`friends/${friend.id}`} key={idx}>
+          <li>
+            <img src={friend.picture}></img>
+            <span>{friend.username}</span>
+          </li>
+        </Link>
       );
-    } else {
-      const friends = Object.keys(this.props.friends).map( friendId => {
-        return this.props.friends[friendId];
-      });
+    });
 
-      const indexItems = friends.map( (friend, idx) => {
-        return (
-          <Link to={`friends/${friend.id}`} key={idx}>
-            <li>
-              <img src={friend.picture}></img>
-              <span>{friend.username}</span>
-            </li>
-          </Link>
-        );
-      });
-
-      return(
+    if (friends.length === 0) {
+      return (
         <div>
           <form>
             <input
@@ -51,15 +51,36 @@ class FriendSearch extends React.Component {
               />
             <button onClick={this.handleQuery}> Search </button>
           </form>
-          <div>
-            { indexItems }
+          <div className="friend-container">
+            <ul>
+              <li> No users match the search criteria </li>
+            </ul>
           </div>
+
         </div>
       );
-
     }
 
-  }
+    return(
+      <div>
+        <form>
+          <input
+            type="text"
+            value={this.state.query}
+            onChange={this.handleQuery}
+            placeholder="Search for a Biker"
+            />
+          <button onClick={this.handleQuery}> Search </button>
+        </form>
+        <div className="friend-container">
+          <ul>
+            { indexItems }
+          </ul>
+        </div>
+      </div>
+    );
+    }
+
 
 }
 

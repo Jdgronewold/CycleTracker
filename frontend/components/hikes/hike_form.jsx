@@ -36,7 +36,6 @@ class HikeForm extends React.Component {
 
     const hike = this.state;
     hike.mapPoints = JSON.stringify(this.state.mapPoints);
-    debugger
     this.props.createHike(hike)
     .then((result) => {
       hashHistory.push(`/hikes/${result.hike.id}`);

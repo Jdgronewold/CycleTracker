@@ -10,6 +10,7 @@ class FriendIndex extends React.Component {
     this.props.fetchFriends();
   }
 
+
   render() {
     const friends = Object.keys(this.props.friends).map( friendId => {
       return this.props.friends[friendId];

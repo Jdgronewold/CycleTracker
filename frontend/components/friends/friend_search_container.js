@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import FriendSearch from './friend_search';
 import { fetchCertainFriends, createFriend } from '../../actions/friend_actions';
 
-const mapStateToProps = ({ friends }) => ({
-  friends
+const mapStateToProps = ({ friendSearch }) => ({
+  friendSearch
 });
 
 const mapDispatchToProps = dispatch => ({

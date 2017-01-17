@@ -1,6 +1,6 @@
 import React from 'react';
 import StaticMap from '../hikes/static_map';
-import { withRouter } from 'react-router';
+import { hashHistory } from 'react-router';
 
 class FriendDetail extends React.Component {
   constructor(props) {
@@ -16,13 +16,13 @@ class FriendDetail extends React.Component {
   handleDelete(e) {
     e.preventDefault();
     this.props.deleteFriend(this.props.friendDetail.id)
-      .then((res) => this.props.route.push("friends"));
+      .then((res) => hashHistory.push("friends"));
   }
 
   handleFriend(e) {
     e.preventDefault();
     this.props.createFriend(this.props.friendDetail)
-      .then((res) => this.props.route.push("friends"));
+      .then((res) => hashHistory.push("friends"));
   }
 
   render() {
@@ -89,4 +89,4 @@ class FriendDetail extends React.Component {
 
 }
 
-export default withRouter(FriendDetail);
+export default FriendDetail;

@@ -26,7 +26,6 @@ class Api::WorkoutsController < ApplicationController
 
   def destroy
     workout = Workout.find(params[:id])
-    debugger
     workout.destroy
     render :show
   end
