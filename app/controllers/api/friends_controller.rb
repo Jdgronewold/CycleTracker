@@ -1,7 +1,7 @@
 class Api::FriendsController < ApplicationController
   def index
-    debugger
     @friends = User.where(id: current_user.out_friends)
+    debugger
   end
 
   def show

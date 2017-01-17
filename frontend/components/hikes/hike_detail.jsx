@@ -6,12 +6,27 @@ import { withRouter } from 'react-router';
 class HikeDetail extends React.Component {
   constructor(props) {
     super(props);
+    // this.state = {mapRendered: false};
+
     this.handleDelete = this.handleDelete.bind(this);
+    this.updateFromChild = this.updateFromChild.bind(this);
   }
 
   componentDidMount() {
+    console.log("detail mounted");
     this.props.fetchHike(this.props.params.id);
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   debugger;
+  //   if(nextProps.params.id !== this.props.params.id) {
+  //     debugger
+  //     this.setState({mapRendered: false});
+  //     return true;
+  //   } else {
+  //     return (!this.state.mapRendered);
+  //   }
+  // }
 
   componentDidUpdate(prevProps) {
     if(this.props.params.id !== prevProps.params.id) {
@@ -23,6 +38,10 @@ class HikeDetail extends React.Component {
     e.preventDefault();
     this.props.deleteHike(this.props.hikeDetail.id)
       .then(() => this.props.router.replace("/hikes"));
+  }
+
+  updateFromChild(key, value) {
+    this.setState({[key]: value});
   }
 
   render() {
@@ -41,6 +60,7 @@ class HikeDetail extends React.Component {
               Distance: {this.props.hikeDetail.distance}
             </div>
             <MapDetail
+              updateFromChild={this.updateFromChild}
               mapPoints={JSON.parse(this.props.hikeDetail.mapPoints)}
               mapForm={false}
             />

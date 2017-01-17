@@ -31,8 +31,11 @@ class MapDetail extends React.Component {
           }
 
           this.directionsRender.setDirections(result);
+        } else {
+          debugger
         }
       });
+      // this.props.updateFromChild("mapRendered", true);
     }
   }
 
@@ -81,6 +84,7 @@ class MapDetail extends React.Component {
     if(!this.props.mapForm) {
       this.updateDirections(this.props.mapPoints);
     }
+
   }
 
   componentDidMount() {
