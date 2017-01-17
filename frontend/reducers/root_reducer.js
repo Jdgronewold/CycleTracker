@@ -5,6 +5,7 @@ import HikeDetailReducer from './hike_detail_reducer';
 import WorkoutsReducer from './workouts_reducer';
 import WorkoutDetailReducer from './workout_detail_reducer';
 import FriendsReducer from './friends_reducer';
+import FriendDetailReducer from './friend_detail_reducer';
 
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   hikeDetail: HikeDetailReducer,
   workouts: WorkoutsReducer,
   workoutDetail: WorkoutDetailReducer,
-  friends: FriendsReducer
+  friends: FriendsReducer,
+  friendDetail: FriendDetailReducer
 });

@@ -1,4 +1,6 @@
-json.extract! @friend, :username, :picture
+json.extract! @friend, :username, :picture, :id
+
+json.friends(current_user_friends.include?(@friend.id))
 
 json.workouts @friend.workouts do |workout|
   json.partial! '../workouts/workout.json.jbuilder', workout: workout

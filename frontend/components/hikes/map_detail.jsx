@@ -1,4 +1,5 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 class MapDetail extends React.Component {
   constructor(props) {
@@ -32,7 +33,9 @@ class MapDetail extends React.Component {
 
           this.directionsRender.setDirections(result);
         } else {
+          console.log(this.props.id);
           debugger
+          hashHistory.push(`hikes/${this.props.id}`);
         }
       });
       // this.props.updateFromChild("mapRendered", true);

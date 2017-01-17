@@ -39,12 +39,17 @@ export const fetchFriend = (id) => dispatch => {
     .then(friend => dispatch(receiveFriend(friend)));
 };
 
-export const createFriend = (friend_join) => dispatch => {
-  return FriendAPIUtils.createFriend(friend_join)
+export const createFriend = (friend) => dispatch => {
+  return FriendAPIUtils.createFriend(friend)
     .then(friend => dispatch(addFriend(friend)));
 };
 
 export const deleteFriend = (id) => dispatch => {
   return FriendAPIUtils.deleteFriend(id)
     .then(friend => dispatch(removeFriend(friend)));
+};
+
+export const fetchCertainFriends = (query) => dispatch => {
+  return FriendAPIUtils.fetchCertainFriends(query)
+    .then(friends => dispatch(receiveFriends(friends)));
 };

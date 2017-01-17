@@ -63,6 +63,7 @@ class HikeDetail extends React.Component {
               updateFromChild={this.updateFromChild}
               mapPoints={JSON.parse(this.props.hikeDetail.mapPoints)}
               mapForm={false}
+              id={this.props.hikeDetail.id}
             />
           </div>
         </div>

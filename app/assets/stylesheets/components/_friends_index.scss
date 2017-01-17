@@ -1,0 +1,29 @@
+.friend-container {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 20px auto;
+}
+
+.friend-container ul {
+  display: flex;
+  justify-content: center;
+}
+
+.friend-container li {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.friend-container img {
+  height: 70px;
+}
+
+.friend-container li:hover {
+  transform: scale(1.3);
+}

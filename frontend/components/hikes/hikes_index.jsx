@@ -36,6 +36,7 @@ class HikeIndex extends React.Component {
         <h2>My Routes</h2>
         <div className="index-container">
           <div className="index-left">
+            <h2> &nbsp;</h2>
             <div>
               <button onClick={this.handleCreate}> Create New </button>
             </div>

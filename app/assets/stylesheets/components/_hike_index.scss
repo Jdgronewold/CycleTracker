@@ -6,7 +6,6 @@
 }
 .index-left {
   flex: 1;
-  margin: 50px;
   display: flex;
   flex-direction: column;
   overflow: scroll;
@@ -17,6 +16,7 @@
   display: flex;
   margin: 20px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .index-left button {

@@ -78,6 +78,7 @@ class HikeForm extends React.Component {
         mapForm={true}
         mapPoints={this.state.mapPoints}
         getPoints={this.getPoints}
+        id={this.props.hikeDetail.id}
       />
     );
   }

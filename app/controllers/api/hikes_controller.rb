@@ -10,7 +10,7 @@ class Api::HikesController < ApplicationController
   def create
     @hike = Hike.new(hike_params)
     @hike.user_id = current_user.id
-    
+
     if @hike.save
       render :show
     else
@@ -32,7 +32,7 @@ class Api::HikesController < ApplicationController
 
   def destroy
     @hike = Hike.find(params[:id])
-    @hike.delete
+    @hike.destroy
     render :show
   end
 

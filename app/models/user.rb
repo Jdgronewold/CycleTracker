@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  has_many :routes
+  has_many :routes, class_name: :Hike, foreign_key: :user_id
   has_many :workouts
   has_many :out_friends, foreign_key: :user_id, class_name: :Friend
   has_many :friends, through: :out_friends, source: :user

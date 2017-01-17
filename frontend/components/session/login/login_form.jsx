@@ -38,9 +38,11 @@ class LoginForm extends React.Component {
 
   logErrors() {
     let errMsg = "";
-    if(this.props.errors.includes("Invalid")) {
-      errMsg = errMsg + this.props.errors[0];
-    }
+    this.props.errors.forEach(error => {
+      if(error.includes("Invalid")) {
+        errMsg = errMsg + this.props.errors[0];
+      }
+    });
     return errMsg;
   }
 

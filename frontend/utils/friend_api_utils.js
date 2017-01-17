@@ -13,11 +13,11 @@ export const fetchFriend = (id) => (
   })
 );
 
-export const createFriend = (friend_join) => (
+export const createFriend = (friend) => (
   $.ajax({
     method: 'POST',
     url: 'api/friends',
-    data: { friend_join }
+    data: { friend }
   })
 );
 
@@ -26,5 +26,13 @@ export const deleteFriend = (id) => (
     method: "DELETE",
     url: `api/friends/${id}`,
     data: { id }
+  })
+);
+
+export const fetchCertainFriends = (query) => (
+  $.ajax({
+    method: "GET",
+    url: `api/friends/search`,
+    data: { query }
   })
 );

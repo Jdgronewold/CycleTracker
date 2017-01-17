@@ -26,13 +26,22 @@ class FriendIndex extends React.Component {
       );
     });
 
-    return (
-      <div>
-        <ul>
-          {indexItems}
-        </ul>
-      </div>
-    );
+    if(this.props.children === null) {
+      return(
+        <div className="friend-container">
+          <h3> My Friends </h3>
+          <ul>
+            {indexItems}
+          </ul>
+        </div>
+      );
+    } else {
+      return (
+        <div className="friend-detail">
+          {this.props.children}
+        </div>
+      );
+    }
   }
 }
 
