@@ -36,13 +36,12 @@ class Api::HikesController < ApplicationController
     render :show
   end
 
-  # def feed
-  #   # Look up to to make a SQL request where multiple IDs are passed in
-  #   hikes = Hike.where(user_id: currentUser plus friend ids)
-  #   workoutes = Workout.where(user_id: currentUser plus friend ids)
-  #
-  #   @sorted_activities = sort(compare(hikes, workouts))
-  # end
+  def feed
+    hikes = Hike.includes(:user, comments: [:author]).where(user_id: ([current_user.id] + current_user_friends))
+    # .includes(:comments)
+    workouts = Workout.includes(:user, comments: [:author]).where(user_id: ([current_user.id] + current_user_friends))
+    @sorted_activities = (hikes + workouts).sort_by(&:created_at).reverse!
+  end
 
   private
 

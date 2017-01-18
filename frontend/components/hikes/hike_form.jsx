@@ -71,8 +71,10 @@ class HikeForm extends React.Component {
   }
 
   renderMap() {
+    debugger
     return(
       <MapForm
+        origin={JSON.parse(this.props.userZipcode)}
         updateFromChild={this.updateFromChild}
         mapForm={true}
         mapPoints={this.state.mapPoints}
@@ -93,6 +95,7 @@ class HikeForm extends React.Component {
                 type="text"
                 value={this.state.title}
                 onChange={this.update("title")}
+                required
                 />
             </div>
             <br />

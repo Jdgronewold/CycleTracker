@@ -31,9 +31,9 @@ class Api::FriendsController < ApplicationController
   def search
     if params[:query].present?
       if params[:query] == "all"
-        @friends = User.all
+        @friends = User.all.where.not(id: current_user.id)
       else
-        @friends = User.where("username ~ ?", params[:query]).where.not(id: current_user.id)
+        @friends = User.where("lower(username) ~ ?", params[:query].downcase).where.not(id: current_user.id)
       end
     else
       @friends = User.none

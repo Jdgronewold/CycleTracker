@@ -11,7 +11,6 @@ class WorkoutIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchWorkouts();
-    console.log(this.props.workouts);
   }
 
   handleCreate() {

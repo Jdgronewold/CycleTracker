@@ -37,3 +37,10 @@ export const deleteHike = (id) => (
     data: { id }
   })
 );
+
+export const fetchActivities = () => (
+  $.ajax({
+    method: "GET",
+    url: `api/hikes/feed`
+  })
+);

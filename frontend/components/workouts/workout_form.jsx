@@ -31,8 +31,10 @@ class WorkoutForm extends React.Component {
   }
 
   updateRoute(e) {
-    const hike_distance = this.props.hikes[parseInt(e.currentTarget.value)].distance;
-    this.setState({route_id: e.currentTarget.value, distance: hike_distance});
+    if(e.currentTarget.value !== "no route"){
+      const hike_distance = this.props.hikes[parseInt(e.currentTarget.value)].distance;
+      this.setState({route_id: e.currentTarget.value, distance: hike_distance});
+    }
   }
 
   handleSubmit() {
@@ -102,6 +104,7 @@ class WorkoutForm extends React.Component {
               <input
                 id="distance"
                 type="number"
+                min="0"
                 value={this.state.distance}
                 onChange={this.update("distance")}
                 />
@@ -150,8 +153,9 @@ class WorkoutForm extends React.Component {
 
             <div className="form-input-div">
               <label htmlFor="route">Route: </label>
-              <select value={this.state.route} onChange={this.updateRoute}>
-                <option disabled value="">select a route</option>
+              <select defaultValue="default" value={this.state.route} onChange={this.updateRoute}>
+                <option disabled value="default">select a route</option>
+                <option value="no route">no route</option>
                 { routeOptions }
               </select>
             </div>

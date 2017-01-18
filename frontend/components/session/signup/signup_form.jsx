@@ -11,7 +11,6 @@ class SignupForm extends React.Component {
       zipcode: 94105,
       picture: ""
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateState = this.updateState.bind(this);
     this.redirect = this.redirect.bind(this);
@@ -24,14 +23,36 @@ class SignupForm extends React.Component {
   }
 
   handleSubmit(e) {
+
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    if(user.picture === null) {
+
+    if(user.picture === "") {
       user.picture = "http://res.cloudinary.com/dggj2pmde/image/upload/c_thumb,g_center,r_30,w_125/v1484542818/pexels-photo-134705_dlcitb.jpg";
     }
-    this.props.signup(user)
-      .then(() => {
-        this.redirect();
+
+    let latlng;
+    const sendSignup = (userToAdd) => {
+      this.props.signup(userToAdd)
+        .then(() => {
+          this.redirect();
+        });
+    };
+    const zipcode = this.state.zipcode;
+    const geocoder = new google.maps.Geocoder();
+    debugger
+    geocoder.geocode( {'address': zipcode}, (results, status) => {
+        // console.log(results);
+        if(status === 'OK') {
+          const lat = results[0].geometry.location.lat();
+          const long = results[0].geometry.location.lng();
+          user.zipcode = { lat: lat, long: long };
+          debugger
+          sendSignup(user);
+        } else {
+          debugger
+        }
+
       });
   }
 

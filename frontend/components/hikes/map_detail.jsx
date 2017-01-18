@@ -32,7 +32,7 @@ class MapDetail extends React.Component {
 
           this.directionsRender.setDirections(result);
         } else {
-          console.log(this.props);
+
         }
       });
       // this.props.updateFromChild("mapRendered", true);
@@ -64,8 +64,9 @@ class MapDetail extends React.Component {
   }
 
   createNewMap() {
+    debugger
     const mapOptions = {
-      center: { lat: 37.7758, lng: -122.435 }, // this is SF
+      center: { lat: this.props.userZipcode.lat, lng: this.props.userZipcode.lat }, // this is SF
       zoom: 13
     };
 
@@ -90,7 +91,6 @@ class MapDetail extends React.Component {
   componentDidMount() {
     // For now load SF, wait to get some new seed data
     this.createNewMap();
-    console.log("mounted");
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -102,7 +102,11 @@ class MapDetail extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.mapPoints[0].location.lat !== this.props.mapPoints[0].location.lat) {
+    if(!this.props.mapForm) {
+      if(prevProps.mapPoints[0].location.lat !== this.props.mapPoints[0].location.lat) {
+        this.updateDirections(this.props.mapPoints);
+      }
+    } else {
       this.updateDirections(this.props.mapPoints);
     }
   }

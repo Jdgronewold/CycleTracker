@@ -4,6 +4,7 @@ export const RECEIVE_HIKES = "RECEIVE_HIKES";
 export const RECEIVE_HIKE = "RECEIVE_HIKE";
 export const REMOVE_HIKE = "REMOVE_HIKE";
 export const ADD_HIKE = "ADD_HIKE";
+export const RECEIVE_ACTIVITIES = "RECEIVE_ACTIVITIES";
 
 
 //SYNC
@@ -27,6 +28,11 @@ export const removeHike = (hike) => ({
   hike
 });
 
+export const receiveActivities = (activities) => ({
+  type: RECEIVE_ACTIVITIES,
+  activities
+});
+
 //ASYNC
 
 export const fetchHikes = () => dispatch => {
@@ -47,4 +53,8 @@ export const updateHike = (hike) => dispatch => {
 
 export const deleteHike = (id) => dispatch => {
   return HikeAPIUtils.deleteHike(id).then(hike => dispatch(removeHike(hike)));
+};
+
+export const fetchActivities = () => dispatch => {
+  return HikeAPIUtils.fetchActivities().then(activities => dispatch(receiveActivities(activities)));
 };

@@ -13,7 +13,6 @@ class HikeDetail extends React.Component {
   }
 
   componentDidMount() {
-    console.log("detail mounted");
     this.props.fetchHike(this.props.params.id);
   }
 
