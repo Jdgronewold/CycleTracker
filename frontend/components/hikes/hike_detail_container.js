@@ -2,9 +2,8 @@ import { connect } from 'react-redux';
 import HikeDetail from './hike_detail';
 import { fetchHike, deleteHike } from '../../actions/hike_actions';
 
-const mapStateToProps = ({ hikeDetail }, ownProps) => ({
-  hikeDetail,
-  ownProps
+const mapStateToProps = ({ hikeDetail }) => ({
+  hikeDetail
 });
 
 const mapDispatchToProps = dispatch => ({

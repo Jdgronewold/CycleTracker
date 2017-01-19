@@ -6,10 +6,11 @@ import { withRouter } from 'react-router';
 class HikeDetail extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {mapRendered: false};
+    this.state = {mapButton: "regular"};
 
     this.handleDelete = this.handleDelete.bind(this);
     this.updateFromChild = this.updateFromChild.bind(this);
+    this.handleRadio = this.handleRadio.bind(this);
   }
 
   componentDidMount() {
@@ -29,11 +30,39 @@ class HikeDetail extends React.Component {
       .then(() => this.props.router.replace("/hikes"));
   }
 
+  handleRadio(e) {
+    e.preventDefault();
+    const switchRadio = this.state.mapButton === "regular" ? "elevation" : "regular";
+    console.log(switchRadio);
+    this.setState({ mapButton: switchRadio });
+  }
+
   updateFromChild(key, value) {
     this.setState({[key]: value});
   }
 
   render() {
+    const radioButtons = (
+      <div className="radio">
+        <label htmlFor="regular"> Regular</label>
+        <input
+          id="regular"
+          type="radio"
+          value={this.state.mapButton}
+          checked={this.state.mapButton === "regular"}
+          onChange={this.handleRadio}
+        />
+        <label htmlFor="elevation"> Elevation Beta</label>
+        <input
+          id="elevation"
+          type="radio"
+          value={this.state.mapButton}
+          checked={this.state.mapButton === "elevation"}
+          onChange={this.handleRadio}
+        />
+      </div>
+    );
+
     if(typeof this.props.hikeDetail.mapPoints === "undefined") {
       return(
         <div></div>
@@ -44,6 +73,9 @@ class HikeDetail extends React.Component {
           <h2> {this.props.hikeDetail.title } </h2>
           <div className="detail-div">
             <div className="detail-right">
+              <div className="radio-buttons">
+                { radioButtons }
+              </div>
               <button onClick={this.handleDelete}> Delete Hike </button>
               <br />
               Distance: {this.props.hikeDetail.distance}
@@ -52,8 +84,7 @@ class HikeDetail extends React.Component {
               updateFromChild={this.updateFromChild}
               mapPoints={JSON.parse(this.props.hikeDetail.mapPoints)}
               mapForm={false}
-              id={this.props.hikeDetail.id}
-              ownProps={this.props.ownProps}
+              
             />
           </div>
         </div>

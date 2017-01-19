@@ -1,7 +1,7 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
 
-class MapDetail extends React.Component {
+class MapDetailElevation extends React.Component {
   constructor(props) {
     super(props);
     this.updateDirections = this.updateDirections.bind(this);
@@ -31,7 +31,9 @@ class MapDetail extends React.Component {
       this.directionsService.route( request, (result, status) => {
         if (status === 'OK') {
           if(!this.props.mapForm) {
-            this.directionsRender.setDirections(result);
+            this.props.polylines.forEach( line => {
+              line.setMap(this.map);
+            });
           } else {
             // Compute distance from result
 
@@ -40,6 +42,7 @@ class MapDetail extends React.Component {
 
             // Do elevation things then call the
             // polyline drawer
+
 
             if(this.markers.length > 1 && this.props.mapForm) {
               const ignorePoints = this.props.overviewPoints[this.props.overviewPoints.length - 1];
@@ -65,9 +68,7 @@ class MapDetail extends React.Component {
             const newOverviewPoints = Object.assign([], this.props.overviewPoints);
             newOverviewPoints.push(result.routes[0].overview_path.length);
             this.props.updateFromChild("overviewPoints", newOverviewPoints);
-            // Actually render something
-            this.directionsRender.setDirections(result);
-          }
+        }
         } else {
           console.log("Received " + status + "from Google");
         }
@@ -88,15 +89,22 @@ class MapDetail extends React.Component {
       this.searchBox.setBounds(this.map.getBounds());
     });
 
+    this.map.addListener('click', (event) => {
+      let marker = new google.maps.Marker({
+        position: event.latLng
+      });
+      marker.setMap(this.map);
+      this.markers.push(marker);
+    });
 
-    // might be depreciated
     this.directionsListener = this.directionsRender.addListener('directions_changed', () => {
       this.computeTotalDistance(this.directionsRender.getDirections());
     });
 
-
     this.searchBoxListener = this.searchBox.addListener('places_changed', () => {
+      debugger
       const places = this.searchBox.getPlaces();
+      debugger
 
       if (places.length === 0) {
         return;
@@ -133,6 +141,10 @@ class MapDetail extends React.Component {
     const newPolylines = Object.assign([], this.props.polylines);
     newPolylines.push(poly);
     this.props.updateFromChild("polylines", newPolylines);
+    console.log(newPolylines);
+    debugger
+    poly.setMap(this.map);
+
   }
 
   computeElevations(elevations, pathLength) {
@@ -165,6 +177,7 @@ class MapDetail extends React.Component {
       default:
         color = "#99B3CC";
     }
+    debugger
     return color;
   }
 
@@ -246,4 +259,4 @@ class MapDetail extends React.Component {
 
 
 
-export default MapDetail;
+export default MapDetailElevation;

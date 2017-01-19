@@ -29,27 +29,30 @@ class HikeIndex extends React.Component {
         </Link>
       );
     });
-
-
-    return (
-      <div>
-        <h2>My Routes</h2>
-        <div className="index-container">
-          <div className="index-left">
-            <h2> &nbsp;</h2>
-            <div>
-              <button onClick={this.handleCreate}> Create New </button>
+    if(this.props.children === null) {
+      return (
+        <div>
+          <h2>My Routes</h2>
+          <div className="index-container">
+            <div className="index-left">
+              <h2> &nbsp;</h2>
+              <div>
+                <button onClick={this.handleCreate}> Create New </button>
+              </div>
+              <ul className="index-ul">
+                { indexItems }
+              </ul>
             </div>
-            <ul className="index-ul">
-              { indexItems }
-            </ul>
-        </div>
-          <div className="index-detail">
-            { this.props.children }
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="index-detail">
+          { this.props.children }
+        </div>
+      );
+    }
   }
 }
 

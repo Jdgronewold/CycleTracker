@@ -1,5 +1,6 @@
 import React from 'react';
 import MapForm from './map_detail';
+import MapFormElevation from './map_detail_elevation';
 import { hashHistory } from 'react-router';
 import merge from 'lodash/merge';
 
@@ -16,6 +17,7 @@ class HikeForm extends React.Component {
     this.getPoints = this.getPoints.bind(this);
     this.removeLast = this.removeLast.bind(this);
     this.clearPoints = this.clearPoints.bind(this);
+    this.handleRadio = this.handleRadio.bind(this);
   }
 
   resetForm() {
@@ -30,6 +32,7 @@ class HikeForm extends React.Component {
       clearedMap: false,
       overviewPoints: [],
       polylines: [],
+      mapButton: "regular"
     });
   }
 
@@ -45,6 +48,14 @@ class HikeForm extends React.Component {
       hashHistory.push(`/hikes/${result.hike.id}`);
     });
     }
+  }
+
+  handleRadio(e) {
+    e.preventDefault();
+    const switchRadio = this.state.mapButton === "regular" ? "elevation" : "regular";
+    this.clearPoints();
+    console.log(switchRadio);
+    this.setState({ mapButton: switchRadio });
   }
 
   errorText() {
@@ -65,34 +76,85 @@ class HikeForm extends React.Component {
 
   removeLast() {
     const sliceLength = this.state.mapPoints.length - 1;
+    debugger // check polylines length vs mapPoints length
     const newMapPoints = this.state.mapPoints.slice(0, sliceLength);
-    this.setState({mapPoints: newMapPoints});
+    const newPolylines = this.state.polylines.slice(0, (sliceLength-1));
+    const newOverviewPoints = this.state.overviewPoints.slice(0, sliceLength);
+    this.setState({
+      mapPoints: newMapPoints,
+      polylines: newPolylines,
+      overviewPoints: newOverviewPoints
+    });
   }
 
   clearPoints() {
     this.setState(this.resetForm());
-    this.setState({clearedMap: true, mapPoints: []})
+    this.setState({ clearedMap: true });
     // this.setState({mapPoints: []});
   }
 
   renderMap() {
-    return(
-      <MapForm
-        origin={JSON.parse(this.props.userZipcode)}
-        updateFromChild={this.updateFromChild}
-        mapForm={true}
-        mapPoints={this.state.mapPoints}
-        getPoints={this.getPoints}
-        clearedMap={this.state.clearedMap}
-        overviewPoints={this.state.overviewPoints}
-      />
-    );
+    if(this.state.mapButton === "regular") {
+      return (
+        <MapForm
+          origin={JSON.parse(this.props.userZipcode)}
+          updateFromChild={this.updateFromChild}
+          mapForm={true}
+          mapPoints={this.state.mapPoints}
+          getPoints={this.getPoints}
+          clearedMap={this.state.clearedMap}
+          overviewPoints={this.state.overviewPoints}
+          polylines={this.state.polylines}
+          distance={this.state.distance}
+          elevation={this.state.elevation}
+        />
+      );
+    } else {
+      return(
+        <MapFormElevation
+          origin={JSON.parse(this.props.userZipcode)}
+          updateFromChild={this.updateFromChild}
+          mapForm={true}
+          mapPoints={this.state.mapPoints}
+          getPoints={this.getPoints}
+          clearedMap={this.state.clearedMap}
+          overviewPoints={this.state.overviewPoints}
+          polylines={this.state.polylines}
+          distance={this.state.distance}
+          elevation={this.state.elevation}
+        />
+      );
+    }
   }
 
   render() {
+    const radioButtons = (
+      <div className="radio">
+        <label htmlFor="regular"> Regular</label>
+        <input
+          id="regular"
+          type="radio"
+          value={this.state.mapButton}
+          checked={this.state.mapButton === "regular"}
+          onChange={this.handleRadio}
+        />
+        <label htmlFor="elevation"> Elevation Beta</label>
+        <input
+          id="elevation"
+          type="radio"
+          value={this.state.mapButton}
+          checked={this.state.mapButton === "elevation"}
+          onChange={this.handleRadio}
+        />
+      </div>
+    );
+    
     return (
       <div className="hike-form-container">
         <div className="form-content">
+          <div className="radio-buttons">
+            { radioButtons }
+          </div>
           <input id="place-search" type="text" placeholder="Search" />
           <form className="hike-form">
             <div className="form-input-div">
