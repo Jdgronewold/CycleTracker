@@ -6,14 +6,37 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create({ username: "guest", password: "password", email: "guest@gmail.com", picture: "http://res.cloudinary.com/dggj2pmde/image/upload/c_thumb,g_center,r_30,w_125/v1484542818/pexels-photo-134705_dlcitb.jpg", zipcode: 94105})
-User.create({ username: "Jeff", password: "password", email: "jeff@jeff.com", zipcode: 94105, picture: "http://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604407/wood-village-house-grass_cqval9.jpg" })
-User.create({ username: "Roger", password: "password", email: "roger@roger.com", zipcode: 98335, picture: "http://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604542/pexels-photo-29557_uvxt7q.jpg"})
-User.create({ username: "Tyler", password: "password", email: "tyler@tyler.com", zipcode: 82001, picture: "http://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604725/person-sport-bike-bicycle_e36rbt.jpg"})
-User.create({ username: "Lucy", password: "password", email: "sierra@sierra.com", zipcode: 94070, picture: "http://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604605/pexels-photo_uxnu6n.jpg"})
-User.create({ username: "Ricky", password: "password", email: "ricky@ricky.com", zipcode: 90001, picture: "http://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604997/pexels-photo_cyzniq.jpg"})
-User.create({ username: "Sarah", password: "password", email: "sarah@sarah.com", zipcode: 90001, picture: "http://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604883/pexels-photo-101647_cmpbkl.jpg"})
+User.create({ username: "guest", password: "password", email: "guest@gmail.com",
+  picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_thumb,g_center,r_30,w_125/v1484542818/pexels-photo-134705_dlcitb.jpg",
+  zipcode: "{\"lat\":47.6288591,\"lng\":-122.34569190000002}"})
+  
+User.create({ username: "Jeff", password: "password", email: "jeff@jeff.com",
+  zipcode: "{\"lat\":47.28886749999999,\"lng\":-122.59872819999998}",
+  picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604407/wood-village-house-grass_cqval9.jpg" })
 
+User.create({ username: "Roger", password: "password", email: "roger@roger.com",
+  zipcode: "{\"lat\":40.5977756,\"lng\":-75.53931549999999}",
+  picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604542/pexels-photo-29557_uvxt7q.jpg"})
+
+User.create({ username: "Tyler", password: "password", email: "tyler@tyler.com",
+  zipcode: "{\"lat\":42.4424515,\"lng\":-87.84515270000003}",
+  picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604725/person-sport-bike-bicycle_e36rbt.jpg"})
+
+User.create({ username: "Lucy", password: "password", email: "sierra@sierra.com",
+  zipcode: "{\"lat\":37.7890183,\"lng\":-122.3915063}",
+  picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604605/pexels-photo_uxnu6n.jpg"})
+
+User.create({ username: "Ricky", password: "password", email: "ricky@ricky.com",
+  zipcode: "{\"lat\":40.75368539999999,\"lng\":-73.9991637}",
+  picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604997/pexels-photo_cyzniq.jpg"})
+
+User.create({ username: "Sarah", password: "password", email: "sarah@sarah.com",
+  zipcode: "{\"lat\":40.04065060000001,\"lng\":-105.20777980000003}",
+  picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604883/pexels-photo-101647_cmpbkl.jpg"})
+
+User.create({ username: "Craig", password: "password", email: "craig@craig.com",
+  zipcode: "{\"lat\":37.2638319,\"lng\":-122.02300400000001}",
+  picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484779574/pexels-photo-241831_xprmdo.jpg"})
 
 Hike.create(title: "Chipotle Run",
   description: "It was worth it ",

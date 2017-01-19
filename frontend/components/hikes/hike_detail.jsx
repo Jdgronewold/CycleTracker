@@ -16,16 +16,6 @@ class HikeDetail extends React.Component {
     this.props.fetchHike(this.props.params.id);
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   debugger;
-  //   if(nextProps.params.id !== this.props.params.id) {
-  //     debugger
-  //     this.setState({mapRendered: false});
-  //     return true;
-  //   } else {
-  //     return (!this.state.mapRendered);
-  //   }
-  // }
 
   componentDidUpdate(prevProps) {
     if(this.props.params.id !== prevProps.params.id) {

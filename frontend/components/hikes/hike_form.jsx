@@ -25,7 +25,11 @@ class HikeForm extends React.Component {
       distance: 0.0,
       mapPoints: [],
       routePath: "",
-      errorText: ""
+      errorText: "",
+      elevation: 0.0,
+      clearedMap: false,
+      overviewPoints: [],
+      polylines: [],
     });
   }
 
@@ -67,11 +71,11 @@ class HikeForm extends React.Component {
 
   clearPoints() {
     this.setState(this.resetForm());
-    this.setState({mapPoints: []});
+    this.setState({clearedMap: true, mapPoints: []})
+    // this.setState({mapPoints: []});
   }
 
   renderMap() {
-    debugger
     return(
       <MapForm
         origin={JSON.parse(this.props.userZipcode)}
@@ -79,6 +83,8 @@ class HikeForm extends React.Component {
         mapForm={true}
         mapPoints={this.state.mapPoints}
         getPoints={this.getPoints}
+        clearedMap={this.state.clearedMap}
+        overviewPoints={this.state.overviewPoints}
       />
     );
   }
@@ -87,6 +93,7 @@ class HikeForm extends React.Component {
     return (
       <div className="hike-form-container">
         <div className="form-content">
+          <input id="place-search" type="text" placeholder="Search" />
           <form className="hike-form">
             <div className="form-input-div">
               <label htmlFor="title">Title: </label>
