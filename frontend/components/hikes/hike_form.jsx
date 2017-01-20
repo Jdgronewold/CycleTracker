@@ -50,7 +50,7 @@ class HikeForm extends React.Component {
       hike.polylines = encoded_polylines;
       this.props.createHike(hike)
       .then((result) => {
-        hashHistory.push(`/hikes/${result.hike.id}`);
+        hashHistory.push(`/routes/${result.hike.id}`);
       });
     }
   }
@@ -100,10 +100,14 @@ class HikeForm extends React.Component {
   }
 
   renderMap() {
+    const origin = {
+      lat: +JSON.parse(this.props.userZipcode).lat,
+      lng: +JSON.parse(this.props.userZipcode).lng
+    };
     if(this.state.mapButton === "Default") {
       return (
         <MapForm
-          origin={JSON.parse(this.props.userZipcode)}
+          origin={origin}
           updateFromChild={this.updateFromChild}
           mapForm={true}
           mapPoints={this.state.mapPoints}
@@ -119,7 +123,7 @@ class HikeForm extends React.Component {
     } else {
       return(
         <MapFormElevation
-          origin={JSON.parse(this.props.userZipcode)}
+          origin={origin}
           updateFromChild={this.updateFromChild}
           mapForm={true}
           mapPoints={this.state.mapPoints}

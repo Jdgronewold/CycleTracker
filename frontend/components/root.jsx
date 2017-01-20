@@ -63,7 +63,7 @@ const Root = ({ store }) => {
           </Route>
 
           <Route
-            path="hikes"
+            path="routes"
             component={HikeIndexContainer}
             onEnter={onEnterHooks._hikeIndex(store, store.dispatch)}>
             <Route path="create" component={HikeFormContainer}  />

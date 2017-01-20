@@ -13,7 +13,7 @@ class HikeIndex extends React.Component {
   }
 
   handleCreate() {
-    this.props.router.push("/hikes/create");
+    this.props.router.push("/routes/create");
   }
 
   render() {

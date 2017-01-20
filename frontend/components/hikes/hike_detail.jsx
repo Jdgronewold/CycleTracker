@@ -28,7 +28,7 @@ class HikeDetail extends React.Component {
   handleDelete(e) {
     e.preventDefault();
     this.props.deleteHike(this.props.hikeDetail.id)
-      .then(() => this.props.router.replace("/hikes"));
+      .then(() => this.props.router.replace("/routes"));
   }
 
   handleToggle(property) {
