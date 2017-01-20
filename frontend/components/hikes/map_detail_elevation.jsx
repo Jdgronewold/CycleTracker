@@ -39,7 +39,7 @@ class MapDetailElevation extends React.Component {
                 strokeWeight: 5,
                 strokeOpacity: 0.8,
               });
-              console.log(this);
+               (this);
               poly.setMap(this.map);
             });
           } else {
@@ -66,7 +66,7 @@ class MapDetailElevation extends React.Component {
                   const elev_color = this.computeElevations(elevations, pathLength);
                   this.createPolylines(newPoints, elev_color);
                 } else {
-                  console.log("Elevation could not be calculated");
+                   ("Elevation could not be calculated");
                 }
               });
             }
@@ -77,7 +77,7 @@ class MapDetailElevation extends React.Component {
             this.props.updateFromChild("overviewPoints", newOverviewPoints);
         }
         } else {
-          console.log("Received " + status + "from Google");
+           ("Received " + status + "from Google");
         }
       });
     }
@@ -118,7 +118,7 @@ class MapDetailElevation extends React.Component {
       let bounds = new google.maps.LatLngBounds();
       places.forEach( place => {
         if (!place.geometry) {
-              console.log("Returned place contains no geometry");
+               ("Returned place contains no geometry");
               return;
         }
 
@@ -165,7 +165,7 @@ class MapDetailElevation extends React.Component {
     const averageGrade = total/pathLength;
     this.props.updateFromChild("elevation", totalElevation);
     let color;
-    console.log(averageGrade);
+     (averageGrade);
     switch(true) {
       case (averageGrade < 0.03):
         color = "#00FF00";
@@ -215,7 +215,7 @@ class MapDetailElevation extends React.Component {
 
     if(this.props.mapForm) {
       // if(!this.props.clearedMap) {
-        console.log("new SearchBox");
+         ("new SearchBox");
         const searchInput = document.getElementById("place-search");
         this.searchBox = new google.maps.places.SearchBox(searchInput);
         // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);

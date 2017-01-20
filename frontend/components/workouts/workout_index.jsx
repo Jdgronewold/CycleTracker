@@ -32,7 +32,7 @@ class WorkoutIndex extends React.Component {
   }
 
   render() {
-    console.log(this.props.workouts);
+     (this.props.workouts);
     // const workouts = Object.keys(this.props.workouts).map( id => this.props.workouts[id]);
     const indexItems = this.workouts.map( (workout, idx) => {
       return (

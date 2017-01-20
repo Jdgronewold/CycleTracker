@@ -13,7 +13,7 @@ const ActivityReducer = (state = {}, action) => {
       const key = Object.keys(action.activity)[0];
       delete newState[key].comments;
       newState[key].comments = action.activity[key].comments;
-      console.log(newState);
+       (newState);
       return newState;
     default:
       return state;

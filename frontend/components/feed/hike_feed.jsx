@@ -11,7 +11,7 @@ const HikeFeed = ({activity, createComment, deleteComment}) => (
     </div>
     <div className="feed-route-content">
       <div className="feed-static-image">
-        <Link to={`hikes/${activity.id}`}>
+        <Link to={`routes/${activity.id}`}>
           <StaticMap hikePath={activity.routePath} />
         </Link>
       </div>

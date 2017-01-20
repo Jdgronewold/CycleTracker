@@ -44,7 +44,7 @@ class NavBar extends React.Component {
           <div className="nav-bar-left">
             <Link className="links" to="home">Ride Tracker</Link>
             <div>
-              <Link className="links-small" to="hikes">Routes</Link>
+              <Link className="links-small" to="routes">Routes</Link>
               <Link className="links-small" to="friends">Friends</Link>
             </div>
           </div>

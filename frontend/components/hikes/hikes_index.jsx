@@ -21,7 +21,7 @@ class HikeIndex extends React.Component {
     const hikes = Object.keys(this.props.hikes).map( id => this.props.hikes[id]);
     const indexItems = hikes.map( (hike, idx) => {
       return (
-        <Link to={`hikes/${hike.id}`} key={idx}>
+        <Link to={`routes/${hike.id}`} key={idx}>
           <li className="index-items">
             <StaticMap hikePath={this.props.hikes[ hike.id ].routePath} />
             <div className="static-overlay">{this.props.hikes[ hike.id ].title}</div>

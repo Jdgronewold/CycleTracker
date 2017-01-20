@@ -41,14 +41,14 @@ class SignupForm extends React.Component {
     const zipcode = this.state.zipcode;
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode( {'address': zipcode}, (results, status) => {
-        // console.log(results);
+        //  (results);
         if(status === 'OK') {
           const lat = results[0].geometry.location.lat();
           const lng = results[0].geometry.location.lng();
           user.zipcode = JSON.stringify({ lat: lat, lng: lng });
           sendSignup(user);
         } else {
-          console.log("geocode did not work");
+           ("geocode did not work");
         }
 
       });

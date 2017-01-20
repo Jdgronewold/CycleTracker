@@ -58,7 +58,7 @@ class MapDetail extends React.Component {
 
                   this.createPolylines(newPoints, elev_color);
                 } else {
-                  console.log("Elevation could not be calculated");
+                   ("Elevation could not be calculated");
                 }
               });
             }
@@ -72,7 +72,7 @@ class MapDetail extends React.Component {
             this.directionsRender.setDirections(result);
           }
         } else {
-          console.log("Received " + status + "from Google");
+           ("Received " + status + "from Google");
         }
       });
     }
@@ -108,7 +108,7 @@ class MapDetail extends React.Component {
       let bounds = new google.maps.LatLngBounds();
       places.forEach( place => {
         if (!place.geometry) {
-              console.log("Returned place contains no geometry");
+               ("Returned place contains no geometry");
               return;
         }
 
@@ -155,7 +155,7 @@ class MapDetail extends React.Component {
 
     this.props.updateFromChild("elevation", totalElevation);
     let color;
-    console.log(averageGrade);
+     (averageGrade);
     switch(true) {
       case (averageGrade < 0.025):
         color = "#00FF00";
@@ -204,7 +204,7 @@ class MapDetail extends React.Component {
 
     if(this.props.mapForm) {
       // if(!this.props.clearedMap) {
-        console.log("new SearchBox");
+         ("new SearchBox");
         const searchInput = document.getElementById("place-search");
         this.searchBox = new google.maps.places.SearchBox(searchInput);
         // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);
