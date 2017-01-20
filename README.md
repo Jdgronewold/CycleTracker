@@ -14,7 +14,7 @@ Ride Tracker is a personal project by Jeff Gronewold
 - Find friends and view their routes/workouts
 - Comment on friends routes
 
-![demo_user's tracks: http://www.chime.audio/demo_user/tracks][tracks]
+![demo map][map]
 
 ## Project Design
 
@@ -38,6 +38,6 @@ Use of google charts to create better visuals
 
 
 [ride]: https://mapmyhike.herokuapp.com/#/welcome/home
-[home page]: ./docs/splash.png "Splash page"
+[home_page]: ./docs/splash.png "Splash page"
 [map]: ./docs/map_image.png
 [cloudinary]: http://cloudinary.com/
