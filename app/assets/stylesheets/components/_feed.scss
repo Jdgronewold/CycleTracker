@@ -1,0 +1,90 @@
+.home-nav-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+.home-nav a {
+  width: 175px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.home-nav-div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.home-nav-div:hover {
+  background-color: blue;
+}
+
+.activity-feed {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.feed-hike {
+  margin: 20px;
+  width: 80%;
+  border: 1px solid $light-grey;
+  padding: 10px;
+}
+
+.feed-workout {
+  margin: 20px;
+  width: 80%;
+}
+
+.feed-title {
+  margin: 5px;
+}
+
+.feed-title span {
+  font-size: 22px;
+}
+
+.feed-route-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.feed-static-image {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid $light-grey;
+  display: flex;
+  justify-content: center;
+}
+
+.feed-static-image img:hover {
+  box-shadow: 1px 1px 10px grey;
+}
+
+.feed-route-data {
+  flex: 4;
+  margin: 10px;
+  padding: 5px;
+}
+
+.feed-route-data li {
+  margin: 10px;
+  padding: 10px;
+  font-size: 18px;
+  box-sizing: border-box;
+}

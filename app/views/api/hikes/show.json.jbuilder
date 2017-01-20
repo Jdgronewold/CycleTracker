@@ -1,1 +1,1 @@
-json.extract! @hike, :id, :title, :description, :distance, :mapPoints, :routePath
+json.extract! @hike, :id, :title, :description, :distance, :mapPoints, :routePath, :elevation, :polylines, :polylineColors

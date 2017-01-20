@@ -46,10 +46,9 @@ class SignupForm extends React.Component {
           const lat = results[0].geometry.location.lat();
           const lng = results[0].geometry.location.lng();
           user.zipcode = JSON.stringify({ lat: lat, lng: lng });
-          debugger
           sendSignup(user);
         } else {
-          debugger
+          console.log("geocode did not work");
         }
 
       });

@@ -4,8 +4,9 @@ json.username hike.user.username
 json.type "hike"
 
 json.comments hike.comments do |comment|
+  json.currentUserId current_user.id
   json.body comment.body
-
+  json.id comment.id
   json.author do
     json.username comment.author.username
     json.picture comment.author.picture

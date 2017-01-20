@@ -8,7 +8,7 @@ class FriendIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchFriends();
+    // this.props.fetchFriends();
   }
 
   handleFriend(e) {

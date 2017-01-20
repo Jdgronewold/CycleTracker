@@ -10,18 +10,18 @@ class WorkoutIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchWorkouts();
+    // this.props.fetchWorkouts();
   }
 
   handleCreate() {
-    this.props.router.push("/workouts/create");
+    this.props.router.push("/dashboard/create");
   }
 
   render() {
     const workouts = Object.keys(this.props.workouts).map( id => this.props.workouts[id]);
     const indexItems = workouts.map( (workout, idx) => {
       return (
-        <Link to={`workouts/${workout.id}`} key={idx}>
+        <Link to={`dashboard/${workout.id}`} key={idx}>
           <li className="index-items">
             <StaticMap hikePath={workout.routePath} />
             <div className="static-overlay">{workout.name}</div>

@@ -1,6 +1,9 @@
 import { Router, Route, IndexRoute, hashHistory, withRouter, IndexRedirect } from 'react-router';
 import { Provider } from 'react-redux';
 import React from 'react';
+import * as onEnterHooks from '../utils/on_enter_hooks';
+
+
 
 import App from './app';
 import SignupFormContainer from './session/signup/signup_form_container';
@@ -19,56 +22,77 @@ import ActivityFeedContainer from './feed/feed_container';
 import SplashHome from './splash/splash_home';
 import Home from './home/home';
 
+
 const Root = ({ store }) => {
-
-  const _redirectIfLoggedIn = (nextState, replace) => {
-    const currentUser = store.getState().session.currentUser;
-    if(currentUser) {
-      replace('home');
-    }
-  };
-
-  const _redirectIfNotLoggedIn = (nextState, replace) => {
-    const currentUser = store.getState().session.currentUser;
-    if(currentUser === null) {
-      replace('welcome');
-    }
-  };
 
   return (
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
           <IndexRedirect to="welcome"/>
-          <Route path="welcome" component={SplashContainer} onEnter={_redirectIfLoggedIn}>
+          <Route path="welcome" component={SplashContainer} onEnter={onEnterHooks._redirectIfLoggedIn(store)}>
             <IndexRedirect to='home'/>
             <Route path="home" component={SplashHome} />
             <Route path="login"
               component={ LoginFormContainer }
-              onEnter={_redirectIfLoggedIn}/>
+              onEnter={onEnterHooks._redirectIfLoggedIn(store)}/>
             <Route path="signup"
               component={ SignupFormContainer }
-              onEnter={_redirectIfLoggedIn}/>
+              onEnter={onEnterHooks._redirectIfLoggedIn(store)}/>
           </Route>
 
-          <Route path="home" component={Home} onEnter={_redirectIfNotLoggedIn}>
+          <Route
+            path="home"
+            component={Home}
+            onEnter={onEnterHooks._redirectIfNotLoggedIn(store)}>
             <IndexRedirect to='feed' />
-            <Route path="feed" component={ActivityFeedContainer} />
+            <Route
+              path="feed"
+              component={ActivityFeedContainer}
+              onEnter={onEnterHooks._activityFeed(store.dispatch)}/>
+            <Route
+              path="dashboard"
+              component={WorkoutIndexContainer}
+              onEnter={onEnterHooks._workoutIndex(store, store.dispatch)}>
+              <Route path="create" component={WorkoutFormContainer}  />
+              <Route
+                path=":id"
+                component={WorkoutDetailContainer}
+                onEnter={onEnterHooks._workoutDetail(store.dispatch)} />
+            </Route>
           </Route>
 
-          <Route path="hikes" component={HikeIndexContainer} onEnter={_redirectIfNotLoggedIn}>
-            <Route path="create" component={HikeFormContainer} />
-            <Route path=":id" component={HikeDetailContainer} />
+          <Route
+            path="hikes"
+            component={HikeIndexContainer}
+            onEnter={onEnterHooks._hikeIndex(store, store.dispatch)}>
+            <Route path="create" component={HikeFormContainer}  />
+            <Route
+              path=":id"
+              component={HikeDetailContainer}
+              onEnter={onEnterHooks._hikeDetail(store.dispatch)}/>
           </Route>
 
-          <Route path="workouts" component={WorkoutIndexContainer} onEnter={_redirectIfNotLoggedIn}>
-            <Route path="create" component={WorkoutFormContainer} />
-            <Route path=":id" component={WorkoutDetailContainer} />
+          <Route
+            path="workouts"
+            component={WorkoutIndexContainer}
+            onEnter={onEnterHooks._workoutIndex(store, store.dispatch)}>
+            <Route path="create" component={WorkoutFormContainer}  />
+            <Route
+              path=":id"
+              component={WorkoutDetailContainer}
+              onEnter={onEnterHooks._workoutDetail(store.dispatch)} />
           </Route>
 
-          <Route path="friends" component={FriendIndexContainer} onEnter={_redirectIfNotLoggedIn}>
+          <Route
+            path="friends"
+            component={FriendIndexContainer}
+            onEnter={onEnterHooks._friendIndex(store, store.dispatch)}>
             <Route path="search" component={FriendSearchContainer} />
-            <Route path=":id" component={FriendDetailContainer} />
+            <Route
+              path=":id"
+              component={FriendDetailContainer}
+              onEnter={onEnterHooks._friendDetail(store.dispatch)} />
           </Route>
 
         </Route>

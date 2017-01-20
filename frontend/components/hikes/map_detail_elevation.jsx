@@ -31,8 +31,16 @@ class MapDetailElevation extends React.Component {
       this.directionsService.route( request, (result, status) => {
         if (status === 'OK') {
           if(!this.props.mapForm) {
-            this.props.polylines.forEach( line => {
-              line.setMap(this.map);
+            this.props.polylines.forEach( (line, idx) => {
+              const color = this.props.polylineColors[idx];
+              let poly = new google.maps.Polyline({
+                path: line,
+                strokeColor: color,
+                strokeWeight: 5,
+                strokeOpacity: 0.8,
+              });
+              console.log(this);
+              poly.setMap(this.map);
             });
           } else {
             // Compute distance from result
@@ -56,7 +64,6 @@ class MapDetailElevation extends React.Component {
                 if(elevStatus === 'OK') {
                   const pathLength = google.maps.geometry.spherical.computeLength(newPoints) * 3.28;
                   const elev_color = this.computeElevations(elevations, pathLength);
-                  debugger
                   this.createPolylines(newPoints, elev_color);
                 } else {
                   console.log("Elevation could not be calculated");
@@ -102,9 +109,7 @@ class MapDetailElevation extends React.Component {
     });
 
     this.searchBoxListener = this.searchBox.addListener('places_changed', () => {
-      debugger
       const places = this.searchBox.getPlaces();
-      debugger
 
       if (places.length === 0) {
         return;
@@ -141,8 +146,9 @@ class MapDetailElevation extends React.Component {
     const newPolylines = Object.assign([], this.props.polylines);
     newPolylines.push(poly);
     this.props.updateFromChild("polylines", newPolylines);
-    console.log(newPolylines);
-    debugger
+    const newPolylineColors = Object.assign([], this.props.polylineColors);
+    newPolylineColors.push(color);
+    this.props.updateFromChild("polylineColors", newPolylineColors);
     poly.setMap(this.map);
 
   }
@@ -157,27 +163,25 @@ class MapDetailElevation extends React.Component {
     }
     const totalElevation = this.props.elevation + total;
     const averageGrade = total/pathLength;
-    debugger
     this.props.updateFromChild("elevation", totalElevation);
     let color;
     console.log(averageGrade);
     switch(true) {
-      case (averageGrade < 0.025):
+      case (averageGrade < 0.03):
         color = "#00FF00";
         break;
-      case (averageGrade > 0.025 && averageGrade < 0.075):
+      case (averageGrade > 0.03 && averageGrade < 0.06):
         color = "#FFFF00";
         break;
-      case (averageGrade > 0.075 && averageGrade < 0.125 ):
+      case (averageGrade > 0.06 && averageGrade < 0.1 ):
         color = "#FFA500";
         break;
-      case (averageGrade > 0.15):
+      case (averageGrade > 0.1):
         color = "#FFA500";
         break;
       default:
         color = "#99B3CC";
     }
-    debugger
     return color;
   }
 
@@ -192,8 +196,9 @@ class MapDetailElevation extends React.Component {
   }
 
   createNewMap() {
+    const origin = this.props.origin || this.props.mapPoints[0].location;
     const mapOptions = {
-      center: this.props.origin, // this is SF
+      center: origin,
       zoom: 13
     };
 

@@ -17,7 +17,7 @@ class HikeForm extends React.Component {
     this.getPoints = this.getPoints.bind(this);
     this.removeLast = this.removeLast.bind(this);
     this.clearPoints = this.clearPoints.bind(this);
-    this.handleRadio = this.handleRadio.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   resetForm() {
@@ -32,7 +32,8 @@ class HikeForm extends React.Component {
       clearedMap: false,
       overviewPoints: [],
       polylines: [],
-      mapButton: "regular"
+      mapButton: "Default",
+      polylineColors: []
     });
   }
 
@@ -41,21 +42,26 @@ class HikeForm extends React.Component {
       return this.errorText();
     } else {
 
-    const hike = this.state;
-    hike.mapPoints = JSON.stringify(this.state.mapPoints);
-    this.props.createHike(hike)
-    .then((result) => {
-      hashHistory.push(`/hikes/${result.hike.id}`);
-    });
+      const hike = this.state;
+      const encoded_polylines = this.state.polylines.map( line => {
+        return google.maps.geometry.encoding.encodePath(line.getPath());
+      });
+      hike.mapPoints = JSON.stringify(this.state.mapPoints);
+      hike.polylines = encoded_polylines;
+      debugger
+      this.props.createHike(hike)
+      .then((result) => {
+        hashHistory.push(`/hikes/${result.hike.id}`);
+      });
     }
   }
 
-  handleRadio(e) {
-    e.preventDefault();
-    const switchRadio = this.state.mapButton === "regular" ? "elevation" : "regular";
-    this.clearPoints();
-    console.log(switchRadio);
-    this.setState({ mapButton: switchRadio });
+  handleToggle(property) {
+    return (e) => {
+      e.preventDefault();
+      this.clearPoints();
+      this.setState({ mapButton: property });
+    };
   }
 
   errorText() {
@@ -89,12 +95,12 @@ class HikeForm extends React.Component {
 
   clearPoints() {
     this.setState(this.resetForm());
-    this.setState({ clearedMap: true });
+    this.setState({ clearedMap: true});
     // this.setState({mapPoints: []});
   }
 
   renderMap() {
-    if(this.state.mapButton === "regular") {
+    if(this.state.mapButton === "Default") {
       return (
         <MapForm
           origin={JSON.parse(this.props.userZipcode)}
@@ -107,6 +113,7 @@ class HikeForm extends React.Component {
           polylines={this.state.polylines}
           distance={this.state.distance}
           elevation={this.state.elevation}
+          polylineColors={this.state.polylineColors}
         />
       );
     } else {
@@ -122,61 +129,65 @@ class HikeForm extends React.Component {
           polylines={this.state.polylines}
           distance={this.state.distance}
           elevation={this.state.elevation}
+          polylineColors={this.state.polylineColors}
         />
       );
     }
   }
 
   render() {
-    const radioButtons = (
-      <div className="radio">
-        <label htmlFor="regular"> Regular</label>
-        <input
-          id="regular"
-          type="radio"
-          value={this.state.mapButton}
-          checked={this.state.mapButton === "regular"}
-          onChange={this.handleRadio}
-        />
-        <label htmlFor="elevation"> Elevation Beta</label>
-        <input
-          id="elevation"
-          type="radio"
-          value={this.state.mapButton}
-          checked={this.state.mapButton === "elevation"}
-          onChange={this.handleRadio}
-        />
+    const mapButtons = (
+      <div className="map-buttons">
+        <span> Map Type: </span>
+        <button onClick={this.handleToggle("Default")} >Default</button>
+        <button onClick={this.handleToggle("Elevation")} >Elevation</button>
       </div>
     );
-    
+
     return (
-      <div className="hike-form-container">
-        <div className="form-content">
-          <div className="radio-buttons">
-            { radioButtons }
+      <div>
+        <div className="detail-title">
+          <h2> Create a Route </h2>
+        </div>
+
+        <div className="detail-div">
+          <div className="detail-search">
+            <input id="place-search" type="text" placeholder="Search Location" />
           </div>
-          <input id="place-search" type="text" placeholder="Search" />
-          <form className="hike-form">
-            <div className="form-input-div">
-              <label htmlFor="title">Title: </label>
-              <input
-                id="title"
-                type="text"
-                value={this.state.title}
-                onChange={this.update("title")}
-                required
+          <div className="detail-map">
+            { this.renderMap() }
+          </div>
+          <div className="detail-content">
+
+            { mapButtons }
+
+            <div className="dynamic-data">
+              <span> <b>Distance:</b> { this.state.distance } </span>
+              <span> <b>Elevation:</b> { this.state.elevation } </span>
+            </div>
+
+            <form className="hike-form">
+
+              <div className="form-input-div">
+                <label htmlFor="title">Title: </label>
+                <input
+                  id="title"
+                  type="text"
+                  value={this.state.title}
+                  onChange={this.update("title")}
+                  required
                 />
-            </div>
-            <br />
-            <div className="form-input-div">
-              <label htmlFor="description">Description: </label>
-              <textarea
-                id="description"
-                value={this.state.description}
-                onChange={this.update("description")}>
-              </textarea>
-            </div>
-            <div> Distance: { this.state.distance }</div>
+              </div>
+
+              <div className="form-input-div">
+                <label htmlFor="description">Description: </label>
+                <textarea
+                  id="description"
+                  value={this.state.description}
+                  onChange={this.update("description")}>
+                </textarea>
+              </div>
+
             <div className="form-button-div">
               <button onClick={this.removeLast}>Remove Last Point</button>
               <button onClick={this.clearPoints}>Clear Route</button>
@@ -186,13 +197,13 @@ class HikeForm extends React.Component {
                 value={"Create!"}
                 />
             </div>
-            <span className="error-text">{this.state.errorText}</span>
+            <div className="error-text">
+              <span>{this.state.errorText}</span>
+            </div>
           </form>
         </div>
-        <div className="form-content">
-          { this.renderMap() }
-        </div>
       </div>
+    </div>
     );
   }
 }

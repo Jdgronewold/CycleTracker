@@ -13,6 +13,7 @@ class MapDetail extends React.Component {
   }
 
   updateDirections(mapPoints) {
+
     if(mapPoints.length === 0) {
       this.createNewMap();
 
@@ -31,6 +32,7 @@ class MapDetail extends React.Component {
       this.directionsService.route( request, (result, status) => {
         if (status === 'OK') {
           if(!this.props.mapForm) {
+
             this.directionsRender.setDirections(result);
           } else {
             // Compute distance from result
@@ -41,7 +43,7 @@ class MapDetail extends React.Component {
             // Do elevation things then call the
             // polyline drawer
 
-            if(this.markers.length > 1 && this.props.mapForm) {
+            if(this.props.mapPoints.length > 1 && this.props.mapForm) {
               const ignorePoints = this.props.overviewPoints[this.props.overviewPoints.length - 1];
               const newPoints = result.routes[0].overview_path.slice(ignorePoints -1);
               const elevOptions = {
@@ -53,7 +55,7 @@ class MapDetail extends React.Component {
                 if(elevStatus === 'OK') {
                   const pathLength = google.maps.geometry.spherical.computeLength(newPoints) * 3.28;
                   const elev_color = this.computeElevations(elevations, pathLength);
-                  debugger
+
                   this.createPolylines(newPoints, elev_color);
                 } else {
                   console.log("Elevation could not be calculated");
@@ -65,6 +67,7 @@ class MapDetail extends React.Component {
             const newOverviewPoints = Object.assign([], this.props.overviewPoints);
             newOverviewPoints.push(result.routes[0].overview_path.length);
             this.props.updateFromChild("overviewPoints", newOverviewPoints);
+
             // Actually render something
             this.directionsRender.setDirections(result);
           }
@@ -133,6 +136,10 @@ class MapDetail extends React.Component {
     const newPolylines = Object.assign([], this.props.polylines);
     newPolylines.push(poly);
     this.props.updateFromChild("polylines", newPolylines);
+
+    const newPolylineColors = Object.assign([], this.props.polylineColors);
+    newPolylineColors.push(color);
+    this.props.updateFromChild("polylineColors", newPolylineColors);
   }
 
   computeElevations(elevations, pathLength) {
@@ -145,7 +152,7 @@ class MapDetail extends React.Component {
     }
     const totalElevation = this.props.elevation + total;
     const averageGrade = total/pathLength;
-    debugger
+
     this.props.updateFromChild("elevation", totalElevation);
     let color;
     console.log(averageGrade);

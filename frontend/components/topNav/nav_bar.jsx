@@ -28,7 +28,7 @@ class NavBar extends React.Component {
       return(
         <div className="nav-bar-container">
           <div className="nav-bar-left">
-            <Link to="home">Map My Hike</Link>
+            <Link to="home">Ride Tracker</Link>
           </div>
           <div className="nav-bar-right">
             <button onClick={this.handleClick("signup")}>Sign Up</button>
@@ -45,7 +45,6 @@ class NavBar extends React.Component {
             <Link className="links" to="home">Map My Hike</Link>
             <div>
               <Link className="links-small" to="hikes">Routes</Link>
-              <Link className="links-small" to="workouts">Workouts</Link>
               <Link className="links-small" to="friends">Friends</Link>
             </div>
           </div>

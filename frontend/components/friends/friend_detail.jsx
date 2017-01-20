@@ -10,7 +10,7 @@ class FriendDetail extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchFriend(this.props.params.id);
+    // this.props.fetchFriend(this.props.params.id);
   }
 
   handleDelete(e) {

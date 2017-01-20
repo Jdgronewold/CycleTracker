@@ -1,9 +1,48 @@
 .detail-div {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detail-title {
+  border-bottom: 2px solid black;
+  padding-top: 20px;
+}
+
+.detail-title h2 {
+  font-size: 30px;
+}
+
+.detail-data {
+  border-bottom: 1px solid black;
+  flex: 1;
+}
+
+.detail-data li {
+  margin: 10px;
+}
+
+.detail-map {
   flex: 2;
 }
 
-.detail-right {
-  flex: 1;
+.detail-delete {
+  display: flex;
+  justify-content: center;
+}
+
+.map-buttons {
+  margin: 10px auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.map-buttons button {
+  padding: 15px;
+  margin: 15px;
+  width: 30%;
 }

@@ -9,7 +9,7 @@ class HikeIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchHikes();
+    // this.props.fetchHikes();
   }
 
   handleCreate() {
@@ -32,17 +32,14 @@ class HikeIndex extends React.Component {
     if(this.props.children === null) {
       return (
         <div>
-          <h2>My Routes</h2>
           <div className="index-container">
-            <div className="index-left">
-              <h2> &nbsp;</h2>
-              <div>
-                <button onClick={this.handleCreate}> Create New </button>
-              </div>
-              <ul className="index-ul">
-                { indexItems }
-              </ul>
+            <div className="top-bar">
+              <h2>My Routes</h2>
+              <button onClick={this.handleCreate}> Create New </button>
             </div>
+            <ul className="index-ul">
+              { indexItems }
+            </ul>
           </div>
         </div>
       );

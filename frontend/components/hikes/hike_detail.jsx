@@ -1,20 +1,21 @@
 import React from 'react';
 import MapDetail from './map_detail';
+import MapDetailElevation from './map_detail_elevation';
 import { withRouter } from 'react-router';
 
 
 class HikeDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {mapButton: "regular"};
+    this.state = {mapButton: "Default"};
 
     this.handleDelete = this.handleDelete.bind(this);
     this.updateFromChild = this.updateFromChild.bind(this);
-    this.handleRadio = this.handleRadio.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchHike(this.props.params.id);
+    // this.props.fetchHike(this.props.params.id);
   }
 
 
@@ -30,36 +31,51 @@ class HikeDetail extends React.Component {
       .then(() => this.props.router.replace("/hikes"));
   }
 
-  handleRadio(e) {
-    e.preventDefault();
-    const switchRadio = this.state.mapButton === "regular" ? "elevation" : "regular";
-    console.log(switchRadio);
-    this.setState({ mapButton: switchRadio });
+  handleToggle(property) {
+    return (e) => {
+      e.preventDefault();
+      this.setState({ mapButton: property });
+    };
   }
 
   updateFromChild(key, value) {
     this.setState({[key]: value});
   }
 
+  renderMap() {
+    const decoded_polylines = this.props.hikeDetail.polylines.map(line => {
+      return google.maps.geometry.encoding.decodePath(line);
+    });
+
+    if(this.state.mapButton === "Default") {
+      return (
+        <MapDetail
+          updateFromChild={this.updateFromChild}
+          mapForm={false}
+          mapPoints={JSON.parse(this.props.hikeDetail.mapPoints)}
+          polylines={decoded_polylines}
+          polylineColors={this.props.hikeDetail.polylineColors}
+        />
+      );
+    } else {
+      return(
+        <MapDetailElevation
+          updateFromChild={this.updateFromChild}
+          mapForm={false}
+          mapPoints={JSON.parse(this.props.hikeDetail.mapPoints)}
+          polylines={decoded_polylines}
+          polylineColors={this.props.hikeDetail.polylineColors}
+        />
+      );
+    }
+  }
+
   render() {
-    const radioButtons = (
-      <div className="radio">
-        <label htmlFor="regular"> Regular</label>
-        <input
-          id="regular"
-          type="radio"
-          value={this.state.mapButton}
-          checked={this.state.mapButton === "regular"}
-          onChange={this.handleRadio}
-        />
-        <label htmlFor="elevation"> Elevation Beta</label>
-        <input
-          id="elevation"
-          type="radio"
-          value={this.state.mapButton}
-          checked={this.state.mapButton === "elevation"}
-          onChange={this.handleRadio}
-        />
+    const mapButtons = (
+      <div className="map-buttons">
+        <span> Map Type: </span>
+        <button onClick={this.handleToggle("Default")} >Default</button>
+        <button onClick={this.handleToggle("Elevation")} >Elevation</button>
       </div>
     );
 
@@ -70,22 +86,27 @@ class HikeDetail extends React.Component {
     } else {
       return(
         <div>
-          <h2> {this.props.hikeDetail.title } </h2>
+          <div className="detail-title">
+            <h2> {this.props.hikeDetail.title } </h2>
+          </div>
           <div className="detail-div">
-            <div className="detail-right">
-              <div className="radio-buttons">
-                { radioButtons }
+            <div className="detail-content">
+              { mapButtons }
+              <div className="detail-data">
+                <ul>
+                  <li key="desc"> <b>Description:</b> {this.props.hikeDetail.description}</li>
+                  <li key="distance"> <b>Distance:</b> {this.props.hikeDetail.distance} miles</li>
+                  <li key="elevation"> <b>Elevation:</b> {this.props.hikeDetail.elevation} feet</li>
+                </ul>
+
               </div>
-              <button onClick={this.handleDelete}> Delete Hike </button>
-              <br />
-              Distance: {this.props.hikeDetail.distance}
             </div>
-            <MapDetail
-              updateFromChild={this.updateFromChild}
-              mapPoints={JSON.parse(this.props.hikeDetail.mapPoints)}
-              mapForm={false}
-              
-            />
+            <div className="detail-map">
+              { this.renderMap() }
+            </div>
+            <div className="detail-delete">
+              <button onClick={this.handleDelete}> Delete Hike </button>
+            </div>
           </div>
         </div>
       );

@@ -1,6 +1,7 @@
 class Api::CommentsController < ApplicationController
 
   def create
+    debugger
     @comment = Comment.new(comment_params)
 
     if(params[:activity][:type] == "hike")
@@ -13,7 +14,7 @@ class Api::CommentsController < ApplicationController
 
     # prevent N+1
     @activity.includes(comments: [:user])
-
+    debugger
     if @comment.save
       render :show
     else
@@ -24,6 +25,18 @@ class Api::CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
+
+    if(params[:activity][:type] == "hike")
+      @activity = Hike.includes(:user).find(params[:activity][:id])
+      @comment.update_attribute(:activity, @activity)
+    else
+      @activity = Workout.includes(:user).find(params[:activity][:id])
+      @comment.update_attribute(:activity, @activity)
+    end
+
+    # prevent N+1
+    @activity.includes(comments: [:user])
+    
     render :show
   end
 

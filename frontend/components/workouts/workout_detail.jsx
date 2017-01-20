@@ -10,7 +10,7 @@ class WorkoutDetail extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchWorkout(this.props.params.id);
+    // this.props.fetchWorkout(this.props.params.id);
   }
 
   componentDidUpdate(prevProps) {
@@ -22,7 +22,7 @@ class WorkoutDetail extends React.Component {
   handleDelete(e) {
     e.preventDefault();
     this.props.deleteWorkout(this.props.workoutDetail.id)
-      .then(() => this.props.router.replace("/workouts"));
+      .then(() => this.props.router.replace("/dashboard"));
   }
 
   render() {

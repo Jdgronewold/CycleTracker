@@ -7,6 +7,8 @@ const ActivityReducer = (state = {}, action) => {
   switch(action.type) {
     case RECEIVE_ACTIVITIES:
       return action.activities;
+    case RECEIVE_ACTIVITY:
+      
     default:
       return state;
   }

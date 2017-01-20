@@ -10,7 +10,9 @@ class Api::HikesController < ApplicationController
   def create
     @hike = Hike.new(hike_params)
     @hike.user_id = current_user.id
-
+    p params[:hike]
+    p params[:hike][:polylines]
+    p params[:hike][:polylines][0].length
     if @hike.save
       render :show
     else
@@ -39,7 +41,7 @@ class Api::HikesController < ApplicationController
   def feed
     hikes = Hike.includes(:user, comments: [:author]).where(user_id: ([current_user.id] + current_user_friends))
     # .includes(:comments)
-    workouts = Workout.includes(:user, comments: [:author]).where(user_id: ([current_user.id] + current_user_friends))
+    workouts = Workout.includes(:user, :hike, comments: [:author]).where(user_id: ([current_user.id] + current_user_friends))
     @sorted_activities = (hikes + workouts).sort_by(&:created_at).reverse!
   end
 
@@ -47,6 +49,6 @@ class Api::HikesController < ApplicationController
 
   def hike_params
     params.require(:hike).permit(:title, :description,
-      :distance, :user_id, :mapPoints, :routePath)
+      :distance, :user_id, :mapPoints, :routePath, :elevation, { polylineColors: [] }, polylines: [])
   end
 end
