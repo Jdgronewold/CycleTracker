@@ -21,15 +21,15 @@ const HikeFeed = ({activity, createComment, deleteComment}) => (
           <li> <b>Distance: </b> {activity.distance} miles</li>
         </ul>
       </div>
-      <div className="feed-comments">
-        <FeedComments
-          comments={activity.comments}
-          create={createComment}
-          delete={deleteComment}
-          type="hike"
-          activityId={activity.id}
+    </div>
+    <div className="feed-comments">
+      <FeedComments
+        comments={activity.comments}
+        create={createComment}
+        delete={deleteComment}
+        type="hike"
+        activityId={activity.id}
         />
-      </div>
     </div>
   </div>
 );

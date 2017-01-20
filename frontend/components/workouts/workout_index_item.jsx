@@ -1,14 +1,12 @@
 import React from 'react';
 import StaticMap from '../hikes/static_map';
 import { Link } from 'react-router';
-import FeedComments from './feed_comments';
 
-const WorkoutFeed = ({activity, createComment, deleteComment}) => (
+const WorkoutIndexItem = ({activity}) => (
   <div className="feed-workout">
     <div className="feed-title" >
       <span>
-        {activity.username} worked
-        out on {activity.date}!
+        {activity.name}
       </span>
     </div>
     <div className="feed-route-content">
@@ -20,24 +18,15 @@ const WorkoutFeed = ({activity, createComment, deleteComment}) => (
       <div className="feed-route-data">
         <ul>
           <li>
-            <b>Summary: </b> {activity.username} completed
-              the {activity.name} workout
+            <b>Description: </b> {activity.description}
             </li>
             <li> <b>Distance: </b> {activity.distance} </li>
             <li> <b>Time: </b> {activity.time} </li>
+            <li> <b>Elevation: </b> {activity.elevation} </li>
           </ul>
       </div>
-    </div>
-    <div className="feed-comments">
-      <FeedComments
-        comments={activity.comments}
-        create={createComment}
-        delete={deleteComment}
-        type="workout"
-        activityId={activity.id}
-        />
     </div>
   </div>
 );
 
-export default WorkoutFeed;
+export default WorkoutIndexItem;

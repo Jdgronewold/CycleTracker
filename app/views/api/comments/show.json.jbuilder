@@ -3,7 +3,7 @@ if @activity.has_attribute?(:route_id)
     json.partial! "workout.json.jbuilder", workout: @activity
   end
 else
-  json.set! "hike_#{activity.id}" do
+  json.set! "hike_#{@activity.id}" do
     json.partial! "hike.json.jbuilder", hike: @activity
   end
 end

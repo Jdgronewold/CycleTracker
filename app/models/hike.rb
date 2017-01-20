@@ -5,5 +5,6 @@ class Hike < ApplicationRecord
   has_many :workouts,
     foreign_key: :route_id,
     class_name: :Workout
+    
   has_many :comments, as: :activity
 end

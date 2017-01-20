@@ -40,7 +40,6 @@ class Api::HikesController < ApplicationController
 
   def feed
     hikes = Hike.includes(:user, comments: [:author]).where(user_id: ([current_user.id] + current_user_friends))
-    # .includes(:comments)
     workouts = Workout.includes(:user, :hike, comments: [:author]).where(user_id: ([current_user.id] + current_user_friends))
     @sorted_activities = (hikes + workouts).sort_by(&:created_at).reverse!
   end

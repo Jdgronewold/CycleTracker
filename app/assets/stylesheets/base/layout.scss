@@ -1,10 +1,11 @@
 html {
 	height: 100%;
-	overflow: hidden
+	overflow: hidden;
+	background-color: $background;
 }
 
 body {
-	font-family: $sans-serif;
+	font-family: $body;
 	background-size: cover;
 	background-repeat: no-repeat;
 	width: 80%;
@@ -32,11 +33,13 @@ h1 {
 	font-weight: bold;
 	margin: 30px 0;
 	color: white;
+	font-family: $title
 }
 
 h2 {
 	font-size: 20px;
 	font-weight: bold;
+	font-family: $title
 }
 
 p {
@@ -45,4 +48,8 @@ p {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+span {
+	margin: 20px;
 }

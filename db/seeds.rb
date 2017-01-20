@@ -9,7 +9,7 @@
 User.create({ username: "guest", password: "password", email: "guest@gmail.com",
   picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_thumb,g_center,r_30,w_125/v1484542818/pexels-photo-134705_dlcitb.jpg",
   zipcode: "{\"lat\":47.6288591,\"lng\":-122.34569190000002}"})
-  
+
 User.create({ username: "Jeff", password: "password", email: "jeff@jeff.com",
   zipcode: "{\"lat\":47.28886749999999,\"lng\":-122.59872819999998}",
   picture: "https://res.cloudinary.com/dggj2pmde/image/upload/c_scale,r_30,w_125/v1484604407/wood-village-house-grass_cqval9.jpg" })
@@ -45,12 +45,6 @@ Hike.create(title: "Chipotle Run",
   mapPoints: "[{\"location\":{\"lat\":37.748050559413784,\"lng\":-122.44451522827148},\"stopover\":false},{\"location\":{\"lat\":37.785096782276035,\"lng\":-122.42237091064453},\"stopover\":false},{\"location\":{\"lat\":37.788352705583755,\"lng\":-122.41189956665039},\"stopover\":false},{\"location\":{\"lat\":37.781433697090115,\"lng\":-122.40520477294922},\"stopover\":false},{\"location\":{\"lat\":37.74655746554895,\"lng\":-122.44125366210938},\"stopover\":false}]",
   distance: 21.193)
 
-Hike.create(title: "Chipotle Run",
-  description: "It was worth it ",
-  user_id: 3,
-  routePath: "qtkeFr{ijV|@M^Ar@Nh@r@L^DTBTNACc@AQOa@a@g@YS_@OYEWBkAPm@?UEWMmBqAu@_@s@OwEo@eMqBuASg@Mw@c@{AgAo@WiA[WOk@_@s@e@[UUGc@GO@SDSJUVYr@Gn@I~@Ut@[\`@g@\\cBfA}@|@q@bAgAxCO^MNe@\\UF[Dk@Ag@MQMk@k@m@eAuBuDq@qAIYKk@CkA?eJIo@{@}BKMGQWmAWcC{@gIWeAmA_D_@oAc@_A_A}A}AwBmA}AmAeBcGcIyBwCyDoFW[uBqCqDeFuCuDaCkDiAwAqBkCqBqC}@qAcBoBgB_C[a@ISKGACsBoCGEQC}HdAuJhAoPpBqJlAyJhAuDd@g@yHzAQ|AS|AQf@xHaBPuDd@mEh@kANi@yHg@{IiAgQkBaYS{CGcAu@HaCXf@hIhVuCzDe@k@gIy@cMA_@DAJCfAwAlCqDdEwF\`DeE~IvLnH_KhFeHhEwFdFaHD@HE\`CmBf@c@v@aAfDuEp@u@\\Uz@g@ZMx@QXE`AEdCGrBIpAWtAg@vAw@n@e@t@u@nA_BF_@lGoI\\c@n@s@nAeAp@g@vAw@tBu@|A[|AQvRgAtCIzEAbGFvCEpCY|AYt@SlEeAt@KnBSpACzA@lBP\`AN\`Cr@xEjBpG~B|J~DrAv@nAx@~ApAzBtBnAjAtC\`ChGxFhJ~HdFhEhAfAvA~AnBfCXn@bAbBtAjC\`B|D|@lCd@~Af@bCb@xCl@xEh@nDd@tBl@tB~@pC~B\`GjCvGb@xA\\zAZ~AL~@RbCF|BAxI?tEFlCf@~Gd@tGLtD@~BEjBIlCMhBu@tGIl@SbBe@nEIrBA~CDhBJhBCbAF|@PbBXjBf@tC^pCJfAB|@@|@Ar@W[kAwDgAeDEEMCiCm@iASa@hDY|CeBbOMr@_@nA[\`AIRWrAELOGYIaAQiBEcFCOBw@F[P]ZUPOHU@SCYK[QSYEWC]Dy@x@_HF_AAUCe@IYMWy@_AOGE@}@e@OGEICEgB}@mD}Ag@K{@Ae@Fq@Pa@LuAj@m@\`@e@\`@q@r@eA\`BuCtF}CfG_@l@QRy@l@PjFFlBJbAHx@?\\It@Sf@ILURSLSFYDe@@B}@J}@B[AWE]GMECQ@]FMAMIMYS}@QiA?Y",
-  mapPoints: "[{\"location\":{\"lat\":37.748050559413784,\"lng\":-122.44451522827148},\"stopover\":false},{\"location\":{\"lat\":37.785096782276035,\"lng\":-122.42237091064453},\"stopover\":false},{\"location\":{\"lat\":37.788352705583755,\"lng\":-122.41189956665039},\"stopover\":false},{\"location\":{\"lat\":37.781433697090115,\"lng\":-122.40520477294922},\"stopover\":false},{\"location\":{\"lat\":37.74655746554895,\"lng\":-122.44125366210938},\"stopover\":false}]",
-  distance: 21.193)
 
 Hike.create(title: "Yosemite Tour",
   description: "Beautiful ride through the valley",
@@ -138,6 +132,13 @@ Workout.create(name: "Burrito Search",
   route_id: 1,
   notes: "It was successful"
 )
+
+Hike.create(title: "Chipotle Run",
+description: "It was worth it ",
+user_id: 3,
+routePath: "qtkeFr{ijV|@M^Ar@Nh@r@L^DTBTNACc@AQOa@a@g@YS_@OYEWBkAPm@?UEWMmBqAu@_@s@OwEo@eMqBuASg@Mw@c@{AgAo@WiA[WOk@_@s@e@[UUGc@GO@SDSJUVYr@Gn@I~@Ut@[\`@g@\\cBfA}@|@q@bAgAxCO^MNe@\\UF[Dk@Ag@MQMk@k@m@eAuBuDq@qAIYKk@CkA?eJIo@{@}BKMGQWmAWcC{@gIWeAmA_D_@oAc@_A_A}A}AwBmA}AmAeBcGcIyBwCyDoFW[uBqCqDeFuCuDaCkDiAwAqBkCqBqC}@qAcBoBgB_C[a@ISKGACsBoCGEQC}HdAuJhAoPpBqJlAyJhAuDd@g@yHzAQ|AS|AQf@xHaBPuDd@mEh@kANi@yHg@{IiAgQkBaYS{CGcAu@HaCXf@hIhVuCzDe@k@gIy@cMA_@DAJCfAwAlCqDdEwF\`DeE~IvLnH_KhFeHhEwFdFaHD@HE\`CmBf@c@v@aAfDuEp@u@\\Uz@g@ZMx@QXE`AEdCGrBIpAWtAg@vAw@n@e@t@u@nA_BF_@lGoI\\c@n@s@nAeAp@g@vAw@tBu@|A[|AQvRgAtCIzEAbGFvCEpCY|AYt@SlEeAt@KnBSpACzA@lBP\`AN\`Cr@xEjBpG~B|J~DrAv@nAx@~ApAzBtBnAjAtC\`ChGxFhJ~HdFhEhAfAvA~AnBfCXn@bAbBtAjC\`B|D|@lCd@~Af@bCb@xCl@xEh@nDd@tBl@tB~@pC~B\`GjCvGb@xA\\zAZ~AL~@RbCF|BAxI?tEFlCf@~Gd@tGLtD@~BEjBIlCMhBu@tGIl@SbBe@nEIrBA~CDhBJhBCbAF|@PbBXjBf@tC^pCJfAB|@@|@Ar@W[kAwDgAeDEEMCiCm@iASa@hDY|CeBbOMr@_@nA[\`AIRWrAELOGYIaAQiBEcFCOBw@F[P]ZUPOHU@SCYK[QSYEWC]Dy@x@_HF_AAUCe@IYMWy@_AOGE@}@e@OGEICEgB}@mD}Ag@K{@Ae@Fq@Pa@LuAj@m@\`@e@\`@q@r@eA\`BuCtF}CfG_@l@QRy@l@PjFFlBJbAHx@?\\It@Sf@ILURSLSFYDe@@B}@J}@B[AWE]GMECQ@]FMAMIMYS}@QiA?Y",
+mapPoints: "[{\"location\":{\"lat\":37.748050559413784,\"lng\":-122.44451522827148},\"stopover\":false},{\"location\":{\"lat\":37.785096782276035,\"lng\":-122.42237091064453},\"stopover\":false},{\"location\":{\"lat\":37.788352705583755,\"lng\":-122.41189956665039},\"stopover\":false},{\"location\":{\"lat\":37.781433697090115,\"lng\":-122.40520477294922},\"stopover\":false},{\"location\":{\"lat\":37.74655746554895,\"lng\":-122.44125366210938},\"stopover\":false}]",
+distance: 21.193)
 
 Workout.create(name: "Zion",
   description: "Amazing views!",

@@ -1,52 +1,73 @@
 import React from 'react';
 import StaticMap from '../hikes/static_map';
 import { withRouter, Link } from 'react-router';
+import WorkoutIndexItem from './workout_index_item';
 
 
 class WorkoutIndex extends React.Component {
   constructor(props) {
     super(props);
     this.handleCreate = this.handleCreate.bind(this);
+    this.workouts = Object.keys(this.props.workouts).map( id => this.props.workouts[id]);
+    this.state = { time: 0, miles: 0, elevation: 0};
+    this.calculateValues = this.calculateValues.bind(this);
   }
 
   componentDidMount() {
-    // this.props.fetchWorkouts();
+      this.calculateValues();
   }
 
   handleCreate() {
-    this.props.router.push("/dashboard/create");
+    this.props.router.push("home/dashboard/create");
+  }
+
+  calculateValues() {
+    let elevation = 0;
+    let distance = 0;
+    this.workouts.forEach(workout => {
+      elevation += workout.elevation;
+      distance += workout.distance;
+    });
+    this.setState({ miles: distance, elevation: elevation });
   }
 
   render() {
-    const workouts = Object.keys(this.props.workouts).map( id => this.props.workouts[id]);
-    const indexItems = workouts.map( (workout, idx) => {
+    console.log(this.props.workouts);
+    // const workouts = Object.keys(this.props.workouts).map( id => this.props.workouts[id]);
+    const indexItems = this.workouts.map( (workout, idx) => {
       return (
-        <Link to={`dashboard/${workout.id}`} key={idx}>
-          <li className="index-items">
-            <StaticMap hikePath={workout.routePath} />
-            <div className="static-overlay">{workout.name}</div>
-          </li>
-        </Link>
+          <WorkoutIndexItem key={idx} activity={workout} />
       );
     });
-    return(
-      <div>
-        <h2>My Workouts</h2>
-        <div className="index-container">
-          <div className="index-left">
-            <div>
-              <button onClick={this.handleCreate}> Create New </button>
+
+    if(this.props.children === null) {
+      return(
+        <div className="dashboard">
+          <div className="stats">
+            <div className="elevation-stat">
+              <span> <b>Total Elevation gain:</b></span>
+              <span> {this.state.elevation}</span>
             </div>
-            <ul className="index-ul">
-              { indexItems }
-            </ul>
-        </div>
-          <div className="index-detail">
-            { this.props.children }
+            <div className="distance-stat">
+              <span> <b>Total Mileage:</b></span>
+              <span> {this.state.miles}</span>
+            </div>
+            <div className="workout-create">
+              <button onClick={this.handleCreate}> Create New</button>
+            </div>
+          </div>
+          <div className="workout-items">
+            { indexItems }
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="index-detail">
+          { this.props.children }
+        </div>
+      );
+    }
   }
 }
 

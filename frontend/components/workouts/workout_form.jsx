@@ -42,7 +42,7 @@ class WorkoutForm extends React.Component {
     workout.time = `${workout.hours}:${workout.minutes}:${workout.seconds}`;
     this.props.createWorkout(workout)
     .then((result) => {
-      hashHistory.push(`/hikes/${result.workout.id}`);
+      hashHistory.push(`home/dashboard/${result.workout.id}`);
     });
   }
 
@@ -50,7 +50,9 @@ class WorkoutForm extends React.Component {
     if(this.state.route_id !== 0) {
       const hike = this.props.hikes[this.state.route_id];
       return (
-        <StaticMap hikePath={hike.routePath} />
+        <div className="map-center">
+          <StaticMap hikePath={hike.routePath} />
+        </div>
       );
     }
   }
@@ -151,13 +153,14 @@ class WorkoutForm extends React.Component {
             </div>
             <br />
 
-            <div className="form-input-div">
+            <div className="form-input-route">
               <label htmlFor="route">Route: </label>
               <select defaultValue="default" value={this.state.route} onChange={this.updateRoute}>
                 <option disabled value="default">select a route</option>
                 <option value="no route">no route</option>
                 { routeOptions }
               </select>
+              { this.renderMap() }
             </div>
             <br />
 
@@ -169,7 +172,6 @@ class WorkoutForm extends React.Component {
                 />
             </div>
         </form>
-        { this.renderMap() }
       </div>
     );
   }

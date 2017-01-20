@@ -7,6 +7,7 @@ export const receiveActivity = (activity) => ({
   activity
 });
 
+
 export const createComment = (comment, activity) => dispatch => {
   return CommentAPIUtils.createComment(comment, activity)
     .then(activity => dispatch(receiveActivity(activity)));

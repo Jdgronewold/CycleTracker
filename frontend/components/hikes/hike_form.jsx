@@ -48,7 +48,6 @@ class HikeForm extends React.Component {
       });
       hike.mapPoints = JSON.stringify(this.state.mapPoints);
       hike.polylines = encoded_polylines;
-      debugger
       this.props.createHike(hike)
       .then((result) => {
         hashHistory.push(`/hikes/${result.hike.id}`);
@@ -81,16 +80,17 @@ class HikeForm extends React.Component {
   }
 
   removeLast() {
-    const sliceLength = this.state.mapPoints.length - 1;
-    debugger // check polylines length vs mapPoints length
-    const newMapPoints = this.state.mapPoints.slice(0, sliceLength);
-    const newPolylines = this.state.polylines.slice(0, (sliceLength-1));
-    const newOverviewPoints = this.state.overviewPoints.slice(0, sliceLength);
-    this.setState({
-      mapPoints: newMapPoints,
-      polylines: newPolylines,
-      overviewPoints: newOverviewPoints
-    });
+    alert("Coming soon! Please clear route");
+    // const sliceLength = this.state.mapPoints.length - 1;
+    // debugger // check polylines length vs mapPoints length
+    // const newMapPoints = this.state.mapPoints.slice(0, sliceLength);
+    // const newPolylines = this.state.polylines.slice(0, (sliceLength-1));
+    // const newOverviewPoints = this.state.overviewPoints.slice(0, sliceLength);
+    // this.setState({
+    //   mapPoints: newMapPoints,
+    //   polylines: newPolylines,
+    //   overviewPoints: newOverviewPoints
+    // });
   }
 
   clearPoints() {

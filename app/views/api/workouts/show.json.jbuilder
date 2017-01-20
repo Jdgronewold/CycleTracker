@@ -2,3 +2,6 @@ json.extract! @workout, :name, :description, :distance, :date, :time, :power, :i
 
 json.routePath @workout.hike.routePath
 json.mapPoints @workout.hike.mapPoints
+json.elevation @workout.hike.elevation
+json.polylines @workout.hike.polylines
+json.polylineColors @workout.hike.polylineColors

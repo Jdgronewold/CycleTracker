@@ -11,7 +11,7 @@ const mapStateToProps = ({ activities }) => ({
 const mapDispatchToProps = dispatch => ({
   fetchActivities: () => dispatch(fetchActivities()),
   createComment: (comment, activity) =>  dispatch(createComment(comment, activity)),
-  deleteComment: (id) => dispatch(deleteComment(id))
+  deleteComment: (id, activity) => dispatch(deleteComment(id, activity))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityFeed);

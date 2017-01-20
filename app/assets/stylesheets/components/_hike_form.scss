@@ -84,3 +84,15 @@
   width: 25%;
   display: inline;
 }
+
+.form-input-route {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.map-center {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+}

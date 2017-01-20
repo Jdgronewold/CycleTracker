@@ -6,6 +6,7 @@ json.type "hike"
 json.comments hike.comments do |comment|
   json.currentUserId current_user.id
   json.body comment.body
+  json.user_id comment.user_id
   json.id comment.id
   json.author do
     json.username comment.author.username

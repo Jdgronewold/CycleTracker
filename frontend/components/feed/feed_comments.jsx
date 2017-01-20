@@ -1,9 +1,10 @@
 import React from 'react';
 
-class FeedComment extends React.Component {
+class FeedComments extends React.Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
     this.update = this.update.bind(this);
     this.state = { body: "" };
   }
@@ -28,11 +29,10 @@ class FeedComment extends React.Component {
   }
 
   render() {
-    debugger
     const comments = this.props.comments.map( (comment, idx) => {
 
       let commentDelete;
-      if(comment.currentUserId === comment.id) {
+      if(comment.currentUserId === comment.user_id) {
         commentDelete = (
           <button
             className="comment-delete-button"
@@ -42,33 +42,36 @@ class FeedComment extends React.Component {
         commentDelete = ( <div></div>);
       }
 
+      // <div className="comment-picture">
+      //   <img src={comment.author.picture} />
+      // </div>
+
       return (
         <li key={idx} className="comment-li">
-          <div className="comment-picture">
-            <img src={comment.author.picture} />
-          </div>
           <div className="comment-data">
-            <div className="comment-name">
-              <span> <b>{comment.author.username}</b></span>
+            <div className="comment-text">
+              <div className="comment-name">
+                <span> <b>{comment.author.username}</b></span>
+              </div>
+              <div className="comment-body">
+                <span> <b>{comment.body}</b></span>
+              </div>
             </div>
-            <div className="comment-body">
-              <span> <b>{comment.body}</b></span>
+            <div className="comment-button">
+              { commentDelete }
             </div>
-          </div>
-          <div className="comment-delete">
-            { commentDelete }
           </div>
         </li>
       );
     });
 
     return (
-      <div>
+      <div className="comment-box">
         <ul>
           { comments }
         </ul>
-        <div className="create-comment">
-          <div className="comment-text">
+        <div className="comment-data">
+          <div className="comment-textarea">
             <textarea
               id="description"
               value={this.state.commentText}
@@ -76,7 +79,7 @@ class FeedComment extends React.Component {
               onChange={this.update("body")}>
             </textarea>
           </div>
-          <div className="comment-submit">
+          <div className="comment-button">
             <button onClick={this.handleCreate}> Post</button>
           </div>
         </div>
@@ -84,3 +87,5 @@ class FeedComment extends React.Component {
     );
   }
 }
+
+export default FeedComments;

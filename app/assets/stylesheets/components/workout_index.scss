@@ -1,0 +1,45 @@
+.stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+}
+
+.elevation_stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.distance_stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto auto;
+  margin: 20px;
+}
+
+.elevation-stat span {
+  font-size: 40px;
+}
+
+.distance-stat span {
+  font-size: 40px;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.workout-items {
+  display: flex;
+  flex-direction: column-reverse;;
+  justify-content: center;
+  align-items: center
+}
