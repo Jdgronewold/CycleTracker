@@ -4,7 +4,7 @@
 
 Ride Tracker is a personal project by Jeff Gronewold
 
-![Splash][home page]
+![Splash][home_page]
 
 ## Features
 
