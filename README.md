@@ -38,6 +38,6 @@ Use of google charts to create better visuals
 
 
 [ride]: https://mapmyhike.herokuapp.com/#/welcome/home
-[home_page]: ./docs/splash.png "Splash page"
+[home_page]: ./docs/Splash.png "Splash page"
 [map]: ./docs/map_image.png
 [cloudinary]: http://cloudinary.com/
