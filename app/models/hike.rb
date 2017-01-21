@@ -4,7 +4,8 @@ class Hike < ApplicationRecord
   belongs_to :user, foreign_key: :user_id
   has_many :workouts,
     foreign_key: :route_id,
-    class_name: :Workout
-    
+    class_name: :Workout,
+    dependent: :destroy
+
   has_many :comments, as: :activity
 end
