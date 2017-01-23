@@ -8,13 +8,23 @@ class WorkoutIndex extends React.Component {
   constructor(props) {
     super(props);
     this.handleCreate = this.handleCreate.bind(this);
-    this.workouts = Object.keys(this.props.workouts).map( id => this.props.workouts[id]);
+
     this.state = { time: 0, miles: 0, elevation: 0};
     this.calculateValues = this.calculateValues.bind(this);
   }
 
   componentDidMount() {
       this.calculateValues();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.location.pathname !== this.props.location.pathname) {
+      this.calculateValues();
+    }
   }
 
   handleCreate() {
@@ -32,8 +42,8 @@ class WorkoutIndex extends React.Component {
   }
 
   render() {
-     (this.props.workouts);
-    // const workouts = Object.keys(this.props.workouts).map( id => this.props.workouts[id]);
+    debugger
+    this.workouts = Object.keys(this.props.workouts).map( id => this.props.workouts[id]);
     const indexItems = this.workouts.map( (workout, idx) => {
       return (
           <WorkoutIndexItem key={idx} activity={workout} />

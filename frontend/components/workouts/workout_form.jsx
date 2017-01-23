@@ -107,6 +107,7 @@ class WorkoutForm extends React.Component {
                 id="distance"
                 type="number"
                 min="0"
+                step={0.01}
                 value={this.state.distance}
                 onChange={this.update("distance")}
                 />

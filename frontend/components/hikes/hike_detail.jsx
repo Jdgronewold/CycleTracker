@@ -105,7 +105,8 @@ class HikeDetail extends React.Component {
               { this.renderMap() }
             </div>
             <div className="detail-delete">
-              <button onClick={this.handleDelete}> Delete Hike </button>
+              Warning! Deleting this hike will also delete associated workouts
+              <button onClick={this.handleDelete}> Delete Route </button>
             </div>
           </div>
         </div>

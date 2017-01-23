@@ -112,7 +112,7 @@ class WorkoutDetail extends React.Component {
               { this.renderMap() }
             </div>
             <div className="detail-delete">
-              <button onClick={this.handleDelete}> Delete Hike </button>
+              <button onClick={this.handleDelete}> Delete Workout </button>
             </div>
           </div>
         </div>
