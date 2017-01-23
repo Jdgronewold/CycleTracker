@@ -1,6 +1,7 @@
 import React from 'react';
 import StaticMap from '../hikes/static_map';
 import { hashHistory } from 'react-router';
+import WorkoutIndexItem from '../workouts/workout_index_item';
 
 class FriendDetail extends React.Component {
   constructor(props) {
@@ -49,14 +50,11 @@ class FriendDetail extends React.Component {
         if(this.props.friendDetail.workouts.length === 0) {
           workouts = <li>No Workouts</li>;
           } else {
-            workouts = this.props.friendDetail.workouts.map((workout, idx) => (
-              <li className="friend-workout" key={idx}>
-                <h5>{workout.name}</h5>
-                <span key="description"> {workout.description}</span>
-                <span key="date"> {workout.date}</span>
-                <span key="time"> {workout.time}</span>
-              </li>
-            ));
+            workouts = this.props.friendDetail.workouts.map((workout, idx) => {
+              return (
+                  <WorkoutIndexItem key={idx} activity={workout} />
+              );
+            });
           }
 
           if(this.props.friendDetail.friends) {

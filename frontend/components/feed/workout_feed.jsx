@@ -23,7 +23,7 @@ const WorkoutFeed = ({activity, createComment, deleteComment}) => (
             <b>Summary: </b> {activity.username} completed
               the {activity.name} workout
             </li>
-            <li> <b>Distance: </b> {activity.distance} </li>
+            <li> <b>Distance: </b> {activity.distance} miles</li>
             <li> <b>Time: </b> {activity.time} </li>
           </ul>
       </div>

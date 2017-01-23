@@ -1,4 +1,4 @@
-json.extract! workout, :name, :description, :date, :id, :time
+json.extract! workout, :name, :description, :date, :id, :time, :distance
 
 json.username workout.user.username
 json.type "workout"

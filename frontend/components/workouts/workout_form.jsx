@@ -108,7 +108,7 @@ class WorkoutForm extends React.Component {
                 type="number"
                 min="0"
                 step={0.01}
-                value={this.state.distance}
+                value={this.state.distance.toFixed(2)}
                 onChange={this.update("distance")}
                 />
             </div>
@@ -123,6 +123,7 @@ class WorkoutForm extends React.Component {
                 max="60"
                 value={this.state.hours}
                 onChange={this.update("hours")}
+                placeholder="hrs"
                 /> : &nbsp;
                 <input
                   id="minutes"
@@ -131,6 +132,7 @@ class WorkoutForm extends React.Component {
                   max="59"
                   value={this.state.minutes}
                   onChange={this.update("minutes")}
+                  placeholder="min"
                   /> : &nbsp;
                   <input
                     id="seconds"
@@ -140,6 +142,7 @@ class WorkoutForm extends React.Component {
                     required
                     value={this.state.seconds}
                     onChange={this.update("seconds")}
+                    placeholder="sec"
                     />
             </div>
             <br />

@@ -150,23 +150,23 @@ class MapDetail extends React.Component {
         total += gain;
       }
     }
-    const totalElevation = this.props.elevation + total;
+    const totalElevation = this.props.elevation + total.toFixed(2);
     const averageGrade = total/pathLength;
 
     this.props.updateFromChild("elevation", totalElevation);
     let color;
      (averageGrade);
     switch(true) {
-      case (averageGrade < 0.025):
+      case (averageGrade < 0.03):
         color = "#00FF00";
         break;
-      case (averageGrade > 0.025 && averageGrade < 0.075):
+      case (averageGrade > 0.03 && averageGrade < 0.06):
         color = "#FFFF00";
         break;
-      case (averageGrade > 0.075 && averageGrade < 0.125 ):
+      case (averageGrade > 0.06 && averageGrade < 0.10 ):
         color = "#FFA500";
         break;
-      case (averageGrade > 0.15):
+      case (averageGrade > 0.10):
         color = "#FFA500";
         break;
       default:
@@ -182,7 +182,7 @@ class MapDetail extends React.Component {
       total += myroute.legs[i].distance.value;
     }
     total = (total / 1000)/1.609;
-    this.props.updateFromChild("distance", total);
+    this.props.updateFromChild("distance", total.toFixed(2));
   }
 
   createNewMap() {

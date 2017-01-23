@@ -38,11 +38,10 @@ class WorkoutIndex extends React.Component {
       elevation += workout.elevation;
       distance += workout.distance;
     });
-    this.setState({ miles: distance, elevation: elevation });
+    this.setState({ miles: distance.toFixed(2), elevation: elevation.toFixed(2) });
   }
 
   render() {
-    debugger
     this.workouts = Object.keys(this.props.workouts).map( id => this.props.workouts[id]);
     const indexItems = this.workouts.map( (workout, idx) => {
       return (

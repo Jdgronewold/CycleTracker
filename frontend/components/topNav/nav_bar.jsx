@@ -42,7 +42,7 @@ class NavBar extends React.Component {
       return (
         <div className="nav-bar-container">
           <div className="nav-bar-left">
-            <Link className="links" to="home">Ride Tracker</Link>
+            <Link className="links" to="home">Cycle Tracker</Link>
             <div>
               <Link className="links-small" to="routes">Routes</Link>
               <Link className="links-small" to="friends">Friends</Link>
