@@ -28,7 +28,7 @@ class NavBar extends React.Component {
       return(
         <div className="nav-bar-container">
           <div className="nav-bar-left">
-            <Link to="home">Ride Tracker</Link>
+            <Link to="home">Cycle Tracker</Link>
           </div>
           <div className="nav-bar-right">
             <button onClick={this.handleClick("signup")}>Sign Up</button>
