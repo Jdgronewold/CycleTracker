@@ -102,7 +102,7 @@ class WorkoutForm extends React.Component {
           <br />
 
             <div className="form-input-div">
-              <label htmlFor="distance">Distace: </label>
+              <label htmlFor="distance">Distance: </label>
               <input
                 id="distance"
                 type="number"
