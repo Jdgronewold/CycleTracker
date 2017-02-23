@@ -1,6 +1,6 @@
 html {
-	height: 100%;
-	overflow: hidden;
+	// height: 100%;
+	overflow: scroll;
 	background-color: $background;
 }
 
@@ -8,11 +8,20 @@ body {
 	font-family: $body;
 	background-size: cover;
 	background-repeat: no-repeat;
-	width: 80%;
-	max-width: 1200px;
+	width: 100%;
+	// max-width: 1200px;
 	margin: 0px auto;
 	height: 100%;
-	overflow: hidden;
+	overflow: scroll;
+	display: flex;
+	justify-content: center;
+}
+
+#main-body {
+	width: 80%;
+	height: 100%;
+	max-width: 1200px;
+	overflow: scroll;
 }
 
 #root {

@@ -161,7 +161,7 @@ class MapDetailElevation extends React.Component {
         total += gain;
       }
     }
-    const totalElevation = this.props.elevation + total;
+    const totalElevation = parseFloat((this.props.elevation + total).toFixed(2));
     const averageGrade = total/pathLength;
     this.props.updateFromChild("elevation", totalElevation);
     let color;
