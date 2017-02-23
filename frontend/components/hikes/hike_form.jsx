@@ -50,7 +50,6 @@ class HikeForm extends React.Component {
       hike.polylines = encoded_polylines;
       this.props.createHike(hike)
       .then((result) => {
-        debugger
         hashHistory.push(`/routes/${result.hike.id}`);
       });
     }
