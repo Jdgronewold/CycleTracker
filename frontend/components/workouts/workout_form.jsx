@@ -106,9 +106,10 @@ class WorkoutForm extends React.Component {
               <input
                 id="distance"
                 type="number"
+                step="0.01"
                 min="0"
                 step={0.01}
-                value={this.state.distance.toFixed(2)}
+                value={this.state.distance}
                 onChange={this.update("distance")}
                 />
             </div>
