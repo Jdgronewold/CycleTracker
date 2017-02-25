@@ -51,6 +51,8 @@ class FriendDetail extends React.Component {
           workouts = <li>No Workouts</li>;
           } else {
             workouts = this.props.friendDetail.workouts.map((workout, idx) => {
+              console.log(this.props);
+              debugger
               return (
                   <WorkoutIndexItem key={idx} activity={workout} />
               );
@@ -65,7 +67,7 @@ class FriendDetail extends React.Component {
 
           return (
             <div>
-              <h2> { this.props.friendDetail.username } </h2>
+              <h1> { this.props.friendDetail.username } </h1>
               <br />
               { button }
               <br />
