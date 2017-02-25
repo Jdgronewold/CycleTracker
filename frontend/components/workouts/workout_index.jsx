@@ -55,11 +55,11 @@ class WorkoutIndex extends React.Component {
           <div className="stats">
             <div className="elevation-stat">
               <span> <b>Total Elevation gain:</b></span>
-              <span> {this.state.elevation}</span>
+              <span> {this.state.elevation + " feet"}</span>
             </div>
             <div className="distance-stat">
               <span> <b>Total Mileage:</b></span>
-              <span> {this.state.miles}</span>
+              <span> {this.state.miles  + " miles"}</span>
             </div>
             <div className="workout-create">
               <button onClick={this.handleCreate}> Create New</button>
