@@ -67,7 +67,7 @@ class FriendDetail extends React.Component {
 
           return (
             <div>
-              <h1> { this.props.friendDetail.username } </h1>
+              <h2> { this.props.friendDetail.username } </h2>
               <br />
               { button }
               <br />

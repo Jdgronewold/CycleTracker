@@ -20,6 +20,7 @@ class WorkoutForm extends React.Component {
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateRoute = this.updateRoute.bind(this);
+    this.updateTime = this.updateTime.bind(this);
   }
 
   componentDidMount(){
@@ -28,6 +29,13 @@ class WorkoutForm extends React.Component {
 
   update(property) {
     return (e) => this.setState({ [property]: e.currentTarget.value });
+  }
+
+  updateTime(value) {
+    if (value.length === 1) {
+      value = "0" + value;
+    }
+    return value;
   }
 
   updateRoute(e) {
@@ -39,7 +47,10 @@ class WorkoutForm extends React.Component {
 
   handleSubmit() {
     const workout = this.state;
-    workout.time = `${workout.hours}:${workout.minutes}:${workout.seconds}`;
+    const hours = this.updateTime(workout.hours);
+    const minutes = this.updateTime(workout.minutes);
+    const seconds = this.updateTime(workout.seconds);
+    workout.time = `${hours}:${minutes}:${seconds}`;
     this.props.createWorkout(workout)
     .then((result) => {
       hashHistory.push(`home/dashboard/${result.workout.id}`);
