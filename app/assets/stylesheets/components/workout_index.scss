@@ -1,9 +1,20 @@
+.description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.description span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .stats {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 30px;
+  margin: 0 20px;
 }
 
 .elevation-stat {
@@ -11,7 +22,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  margin: 0 20px;
 }
 
 .distance-stat {
@@ -20,7 +31,7 @@
   justify-content: center;
   align-items: center;
   margin: auto auto;
-  margin: 20px;
+  margin: 0 20px;
 }
 
 .elevation-stat span {

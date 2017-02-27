@@ -52,6 +52,9 @@ class WorkoutIndex extends React.Component {
     if(this.props.children === null) {
       return(
         <div className="dashboard">
+          <div className="description">
+            <span> Track all of your past workouts! </span>
+          </div>
           <div className="stats">
             <div className="elevation-stat">
               <span> <b>Total Elevation gain:</b></span>
