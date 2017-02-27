@@ -1,6 +1,6 @@
 import React from 'react';
 import StaticMap from '../hikes/static_map';
-import { hashHistory } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 import WorkoutIndexItem from '../workouts/workout_index_item';
 
 class FriendDetail extends React.Component {
@@ -40,10 +40,12 @@ class FriendDetail extends React.Component {
         routes = <li>No Routes</li>;
         } else {
           routes = this.props.friendDetail.routes.map((route, idx) => (
-            <li className="friend-route" key={idx}>
-              <StaticMap hikePath={route.routePath} />
-              <h5>{route.title}</h5>
-            </li>
+            <Link to={`routes/${route.id}`} key={idx}>
+              <li className="friend-route">
+                <StaticMap hikePath={route.routePath} />
+                <div className="static-overlay">{route.title}</div>
+              </li>
+            </Link>
           ));
         }
 
@@ -51,8 +53,6 @@ class FriendDetail extends React.Component {
           workouts = <li>No Workouts</li>;
           } else {
             workouts = this.props.friendDetail.workouts.map((workout, idx) => {
-              console.log(this.props);
-              debugger
               return (
                   <WorkoutIndexItem key={idx} activity={workout} />
               );
