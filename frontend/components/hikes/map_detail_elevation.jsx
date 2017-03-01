@@ -10,13 +10,25 @@ class MapDetailElevation extends React.Component {
     this.createPolylines = this.createPolylines.bind(this);
     this.computeElevations = this.computeElevations.bind(this);
     this.computeTotalDistance = this.computeTotalDistance.bind(this);
+    this.drawLines = this.drawLines.bind(this);
   }
 
   updateDirections(mapPoints) {
     if(mapPoints.length === 0) {
       this.createNewMap();
+      // put another conditional here that will test for clearedPoint
+      // in that conditional write something that takes the polylines
+      // and redraws them - line 36 through 46 (extract that out to a function)
+      // also need to clear the existing polylines
+    // } else if (this.props.clearedPoints) {
+    //   console.log(this.map);
+    //
 
-    } else {
+  } else if (this.props.clearedPoint) {
+    debugger
+    this.markers[this.markers.length - 1].setMap(null);
+    this.props.updateFromChild("clearedPoint", false);
+  } else {
       const origin = mapPoints[0].location;
       const end = mapPoints[mapPoints.length - 1].location;
       const waypoints = mapPoints.slice(1, mapPoints.length-1);
@@ -30,6 +42,8 @@ class MapDetailElevation extends React.Component {
       };
       this.directionsService.route( request, (result, status) => {
         if (status === 'OK') {
+          // this first if statement could probably be done outside
+          // of the callback
           if(!this.props.mapForm) {
             this.props.polylines.forEach( (line, idx) => {
               const color = this.props.polylineColors[idx];
@@ -53,20 +67,26 @@ class MapDetailElevation extends React.Component {
 
 
             if(this.markers.length > 1 && this.props.mapForm) {
+              console.log(this.props);
+              console.log(this.markers);
+              console.log(result);
               const ignorePoints = this.props.overviewPoints[this.props.overviewPoints.length - 1];
               const newPoints = result.routes[0].overview_path.slice(ignorePoints -1);
               const elevOptions = {
                 'path': newPoints,
                 'samples': 30
               };
+              debugger
 
               this.elevator.getElevationAlongPath(elevOptions, (elevations, elevStatus) => {
+                console.log(elevStatus);
+                debugger
                 if(elevStatus === 'OK') {
                   const pathLength = google.maps.geometry.spherical.computeLength(newPoints) * 3.28;
                   const elev_color = this.computeElevations(elevations, pathLength);
                   this.createPolylines(newPoints, elev_color);
                 } else {
-                   ("Elevation could not be calculated");
+                   console.log("Elevation could not be calculated");
                 }
               });
             }
@@ -136,7 +156,6 @@ class MapDetailElevation extends React.Component {
   }
 
   createPolylines(path, color) {
-
     let poly = new google.maps.Polyline({
       path: path,
       strokeColor: color,
@@ -151,6 +170,19 @@ class MapDetailElevation extends React.Component {
     this.props.updateFromChild("polylineColors", newPolylineColors);
     poly.setMap(this.map);
 
+  }
+
+  drawLines() {
+    this.props.polylines.forEach( (line, idx) => {
+      const color = this.props.polylineColors[idx];
+      let poly = new google.maps.Polyline({
+        path: line,
+        strokeColor: color,
+        strokeWeight: 5,
+        strokeOpacity: 0.8,
+      });
+      poly.setMap(this.map);
+    });
   }
 
   computeElevations(elevations, pathLength) {
@@ -199,7 +231,7 @@ class MapDetailElevation extends React.Component {
     const origin = this.props.origin || this.props.mapPoints[0].location;
     const mapOptions = {
       center: origin,
-      zoom: 13
+      zoom: 16
     };
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
@@ -215,7 +247,6 @@ class MapDetailElevation extends React.Component {
 
     if(this.props.mapForm) {
       // if(!this.props.clearedMap) {
-         ("new SearchBox");
         const searchInput = document.getElementById("place-search");
         this.searchBox = new google.maps.places.SearchBox(searchInput);
         // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);

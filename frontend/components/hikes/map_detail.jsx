@@ -188,7 +188,7 @@ class MapDetail extends React.Component {
   createNewMap() {
     const mapOptions = {
       center: this.props.origin, // this is SF
-      zoom: 13
+      zoom: 15
     };
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
@@ -203,8 +203,6 @@ class MapDetail extends React.Component {
     }
 
     if(this.props.mapForm) {
-      // if(!this.props.clearedMap) {
-         ("new SearchBox");
         const searchInput = document.getElementById("place-search");
         this.searchBox = new google.maps.places.SearchBox(searchInput);
         // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);

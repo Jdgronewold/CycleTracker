@@ -20,7 +20,7 @@ class HikeForm extends React.Component {
     this.handleToggle = this.handleToggle.bind(this);
   }
 
-  resetForm() {
+  resetForm(cleared = false) {
     return ({
       title: "",
       description: "",
@@ -29,7 +29,7 @@ class HikeForm extends React.Component {
       routePath: "",
       errorText: "",
       elevation: 0.0,
-      clearedMap: false,
+      clearedPoint: cleared,
       overviewPoints: [],
       polylines: [],
       mapButton: "Default",
@@ -80,22 +80,27 @@ class HikeForm extends React.Component {
   }
 
   removeLast() {
-    alert("Coming soon! Please clear route");
-    // const sliceLength = this.state.mapPoints.length - 1;
-    // debugger // check polylines length vs mapPoints length
-    // const newMapPoints = this.state.mapPoints.slice(0, sliceLength);
-    // const newPolylines = this.state.polylines.slice(0, (sliceLength-1));
-    // const newOverviewPoints = this.state.overviewPoints.slice(0, sliceLength);
-    // this.setState({
-    //   mapPoints: newMapPoints,
-    //   polylines: newPolylines,
-    //   overviewPoints: newOverviewPoints
-    // });
+    // alert("Coming soon! Please clear route");
+    const sliceLength = this.state.mapPoints.length - 1;
+    const newMapPoints = this.state.mapPoints.slice(0, sliceLength);
+    const newPolylines = this.state.polylines.slice(0, (sliceLength-1));
+    const newColors = this.state.polylineColors.slice(0, (sliceLength-1))
+    if (this.state.mapButton === "Elevation") {
+      debugger
+      this.state.polylines[sliceLength-1].setMap(null);
+    }
+    const newOverviewPoints = this.state.overviewPoints.slice(0, sliceLength);
+    this.setState({
+      mapPoints: newMapPoints,
+      polylines: newPolylines,
+      overviewPoints: newOverviewPoints,
+      polylineColors: newColors,
+      clearedPoint: true
+    });
   }
 
   clearPoints() {
     this.setState(this.resetForm());
-    this.setState({ clearedMap: true});
     // this.setState({mapPoints: []});
   }
 
@@ -112,7 +117,7 @@ class HikeForm extends React.Component {
           mapForm={true}
           mapPoints={this.state.mapPoints}
           getPoints={this.getPoints}
-          clearedMap={this.state.clearedMap}
+          clearedPoint={this.state.clearedPoint}
           overviewPoints={this.state.overviewPoints}
           polylines={this.state.polylines}
           distance={this.state.distance}
@@ -128,7 +133,7 @@ class HikeForm extends React.Component {
           mapForm={true}
           mapPoints={this.state.mapPoints}
           getPoints={this.getPoints}
-          clearedMap={this.state.clearedMap}
+          clearedPoint={this.state.clearedPoint}
           overviewPoints={this.state.overviewPoints}
           polylines={this.state.polylines}
           distance={this.state.distance}
