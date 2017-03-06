@@ -25,7 +25,7 @@ class MapDetailElevation extends React.Component {
     //
 
   } else if (this.props.clearedPoint) {
-    debugger
+
     this.markers[this.markers.length - 1].setMap(null);
     this.props.updateFromChild("clearedPoint", false);
   } else {
@@ -64,8 +64,6 @@ class MapDetailElevation extends React.Component {
 
             // Do elevation things then call the
             // polyline drawer
-
-
             if(this.markers.length > 1 && this.props.mapForm) {
               console.log(this.props);
               console.log(this.markers);
@@ -224,7 +222,7 @@ class MapDetailElevation extends React.Component {
       total += myroute.legs[i].distance.value;
     }
     total = (total / 1000)/1.609;
-    this.props.updateFromChild("distance", total);
+    this.props.updateFromChild("distance", total.toFixed(2));
   }
 
   createNewMap() {

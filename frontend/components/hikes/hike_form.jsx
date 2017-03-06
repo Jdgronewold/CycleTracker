@@ -167,7 +167,7 @@ class HikeForm extends React.Component {
             { this.renderMap() }
           </div>
           <div className="detail-content">
-
+            <span> Current map type: {this.state.mapButton} </span>
             { mapButtons }
 
             <div className="dynamic-data">
