@@ -9,7 +9,8 @@ Ride Tracker is a personal project by Jeff Gronewold
 ## Features
 
 - User accounts with secure authentication
-- Custom map creation including distance and elevation tracking
+- Custom map creation
+- Route tracking allows you to calculate elation gain through Google Elevation
 - Track previous workouts
 - Find friends and view their routes/workouts
 - Comment on friends routes
