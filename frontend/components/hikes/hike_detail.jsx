@@ -71,6 +71,7 @@ class HikeDetail extends React.Component {
   }
 
   render() {
+
     const mapButtons = (
       <div className="map-buttons">
         <span> Map Type: </span>
@@ -78,6 +79,21 @@ class HikeDetail extends React.Component {
         <button onClick={this.handleToggle("Elevation")} >Elevation</button>
       </div>
     );
+
+    const deleteButton = () => {
+      if (!this.props.session.currentUser) return <div></div>;
+      if (this.props.session.currentUser.id ===
+        this.props.hikeDetail.user_id) {
+        return (
+          <div className="detail-delete">
+            <button onClick={this.handleDelete}> Delete Route </button>
+            <h3> Warning! Deleting this hike will also delete associated workouts </h3>
+          </div>
+        );
+      } else {
+        return <div></div>;
+      }
+    };
 
     if(typeof this.props.hikeDetail.mapPoints === "undefined") {
       return(
@@ -105,8 +121,7 @@ class HikeDetail extends React.Component {
               { this.renderMap() }
             </div>
             <div className="detail-delete">
-              <button onClick={this.handleDelete}> Delete Route </button>
-              <h3> Warning! Deleting this hike will also delete associated workouts </h3>
+              { deleteButton() }
             </div>
           </div>
         </div>

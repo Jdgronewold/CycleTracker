@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import WorkoutDetail from './workout_detail';
 import { fetchWorkout, deleteWorkout } from '../../actions/workout_actions';
 
-const mapStateToProps = ({ workoutDetail }) => ({
-  workoutDetail
+const mapStateToProps = ({ workoutDetail, session }) => ({
+  workoutDetail,
+  session: session.currentUser ? session : {}
 });
 
 const mapDispatchToProps = dispatch => ({

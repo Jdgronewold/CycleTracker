@@ -10,9 +10,7 @@ class Api::HikesController < ApplicationController
   def create
     @hike = Hike.new(hike_params)
     @hike.user_id = current_user.id
-    p params[:hike]
-    p params[:hike][:polylines]
-    p params[:hike][:polylines][0].length
+
     if @hike.save
       render :show
     else

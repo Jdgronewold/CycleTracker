@@ -50,6 +50,7 @@ class WorkoutForm extends React.Component {
     const hours = this.updateTime(workout.hours);
     const minutes = this.updateTime(workout.minutes);
     const seconds = this.updateTime(workout.seconds);
+    workout.creater = this.props.session.currentUser.username;
     workout.time = `${hours}:${minutes}:${seconds}`;
     this.props.createWorkout(workout)
     .then((result) => {

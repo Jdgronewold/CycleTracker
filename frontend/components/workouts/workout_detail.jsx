@@ -69,7 +69,7 @@ class WorkoutDetail extends React.Component {
       mapWarning = <span className="error-text">Elevation is still in beta!</span>;
       } else {
         mapWarning = <span></span>;
-        }
+      }
 
     const mapButtons = (
       <div className="map-buttons">
@@ -79,6 +79,21 @@ class WorkoutDetail extends React.Component {
         {mapWarning}
       </div>
     );
+
+    const deleteButton = () => {
+      if (!this.props.session.currentUser) return <div></div>;
+      if (this.props.session.currentUser.id ===
+        this.props.workoutDetail.user_id) {
+        return (
+          <div className="detail-delete">
+            <button onClick={this.handleDelete}> Delete Route </button>
+            <h3> Warning! Deleting this hike will also delete associated workouts </h3>
+          </div>
+        );
+      } else {
+        return <div></div>;
+      }
+    };
 
     let elevation;
     if(this.props.workoutDetail.elevation === null) {
@@ -111,9 +126,7 @@ class WorkoutDetail extends React.Component {
             <div className="detail-map">
               { this.renderMap() }
             </div>
-            <div className="detail-delete">
-              <button onClick={this.handleDelete}> Delete Workout </button>
-            </div>
+            { deleteButton() }
           </div>
         </div>
       );

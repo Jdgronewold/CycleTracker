@@ -3,8 +3,9 @@ import WorkoutForm from './workout_form';
 import { createWorkout } from '../../actions/workout_actions';
 import { fetchHikes } from '../../actions/hike_actions';
 
-const mapStateToProps = ({hikes}) => ({
-  hikes
+const mapStateToProps = ({hikes, session}) => ({
+  hikes,
+  session
 });
 
 const mapDispatchToProps = dispatch => ({
