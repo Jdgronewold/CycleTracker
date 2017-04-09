@@ -54,7 +54,7 @@ class MapDetail extends React.Component {
       });
 
       // do elevation bits - need to redo directions service for just this chunk
-      if (mapPoints.length > 1) {
+      if (mapPoints.length > 1 && this.props.mapForm) {
         const originElev = mapPoints[mapPoints.length - 2].location;
         const endElev = mapPoints[mapPoints.length - 1].location;
 
