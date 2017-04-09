@@ -86,8 +86,7 @@ class WorkoutDetail extends React.Component {
         this.props.workoutDetail.user_id) {
         return (
           <div className="detail-delete">
-            <button onClick={this.handleDelete}> Delete Route </button>
-            <h3> Warning! Deleting this hike will also delete associated workouts </h3>
+            <button onClick={this.handleDelete}> Delete Workout </button>
           </div>
         );
       } else {
