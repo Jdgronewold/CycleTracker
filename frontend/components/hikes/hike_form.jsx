@@ -86,7 +86,6 @@ class HikeForm extends React.Component {
     const newPolylines = this.state.polylines.slice(0, (sliceLength-1));
     const newColors = this.state.polylineColors.slice(0, (sliceLength-1))
     if (this.state.mapButton === "Elevation") {
-      debugger
       this.state.polylines[sliceLength-1].setMap(null);
     }
     const newOverviewPoints = this.state.overviewPoints.slice(0, sliceLength);
@@ -171,8 +170,8 @@ class HikeForm extends React.Component {
             { mapButtons }
 
             <div className="dynamic-data">
-              <span> <b>Distance:</b> { this.state.distance } </span>
-              <span> <b>Elevation:</b> { this.state.elevation } </span>
+              <span> <b>Distance:</b> { this.state.distance + " miles"} </span>
+              <span> <b>Elevation:</b> { this.state.elevation + " feet" } </span>
             </div>
 
             <form className="hike-form">
