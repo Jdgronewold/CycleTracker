@@ -40,29 +40,6 @@ class MapDetail extends React.Component {
             this.props.updateFromChild("routePath", result.routes[0].overview_polyline);
             this.computeTotalDistance(result);
 
-            // Do elevation things then call the
-            // polyline drawer
-
-            if(this.props.mapPoints.length > 1 && this.props.mapForm) {
-              const ignorePoints = this.props.overviewPoints[this.props.overviewPoints.length - 1];
-              const newPoints = result.routes[0].overview_path.slice(ignorePoints -1);
-              const elevOptions = {
-                'path': newPoints,
-                'samples': 30
-              };
-
-              this.elevator.getElevationAlongPath(elevOptions, (elevations, elevStatus) => {
-                if(elevStatus === 'OK') {
-                  const pathLength = google.maps.geometry.spherical.computeLength(newPoints) * 3.28;
-                  const elev_color = this.computeElevations(elevations, pathLength);
-
-                  this.createPolylines(newPoints, elev_color);
-                } else {
-                   ("Elevation could not be calculated");
-                }
-              });
-            }
-
             // update overviewPoints - happens always
             const newOverviewPoints = Object.assign([], this.props.overviewPoints);
             newOverviewPoints.push(result.routes[0].overview_path.length);
@@ -75,6 +52,39 @@ class MapDetail extends React.Component {
            ("Received " + status + "from Google");
         }
       });
+
+      // do elevation bits - need to redo directions service for just this chunk
+      if (mapPoints.length > 1) {
+        const originElev = mapPoints[mapPoints.length - 2].location;
+        const endElev = mapPoints[mapPoints.length - 1].location;
+
+        const requestElev = {
+          origin: originElev,
+          destination: endElev,
+          travelMode: 'DRIVING',
+          unitSystem: google.maps.UnitSystem.IMPERIAL
+        };
+
+        this.directionsService.route( requestElev, (result, status) => {
+          if (status === 'OK') {
+            const newPoints = result.routes[0].overview_path;
+            const elevOptions = {
+              'path': newPoints,
+              'samples': 30
+            };
+
+            this.elevator.getElevationAlongPath(elevOptions, (elevations, elevStatus) => {
+              if(elevStatus === 'OK') {
+                const pathLength = google.maps.geometry.spherical.computeLength(newPoints) * 3.28;
+                const elev_color = this.computeElevations(elevations, pathLength);
+                this.createPolylines(newPoints, elev_color);
+              } else {
+                 console.log("Elevation could not be calculated");
+              }
+            });
+          }
+        });
+      }
     }
   }
 
