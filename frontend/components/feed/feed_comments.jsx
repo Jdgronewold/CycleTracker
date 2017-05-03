@@ -21,7 +21,9 @@ class FeedComments extends React.Component {
     e.preventDefault(e);
     const activity = { type: this.props.type, id: this.props.activityId};
     const comment = this.state;
-    this.props.create(comment, activity);
+    this.props.create(comment, activity).then((arg) => {
+      this.setState({body: ""});
+    });
   }
 
   update(property) {
@@ -29,7 +31,13 @@ class FeedComments extends React.Component {
   }
 
   render() {
-    const comments = this.props.comments.map( (comment, idx) => {
+
+
+    const commentsOrdered = this.props.comments.sort( (a, b) => {
+      return a.id - b.id;
+    });
+
+    const comments = commentsOrdered.map( (comment, idx) => {
 
       let commentDelete;
       if(comment.currentUserId === comment.user_id) {
@@ -48,18 +56,16 @@ class FeedComments extends React.Component {
 
       return (
         <li key={idx} className="comment-li">
-          <div className="comment-data">
-            <div className="comment-text">
-              <div className="comment-name">
-                <span> <b>{comment.author.username}</b></span>
-              </div>
-              <div className="comment-body">
-                <span> <b>{comment.body}</b></span>
-              </div>
+          <div className="comment-text">
+            <div className="comment-name">
+              <span> <b>{comment.author.username}</b></span>
             </div>
-            <div className="comment-button">
-              { commentDelete }
+            <div className="comment-body">
+               {comment.body}
             </div>
+          </div>
+          <div className="comment-button">
+            { commentDelete }
           </div>
         </li>
       );
@@ -70,11 +76,11 @@ class FeedComments extends React.Component {
         <ul>
           { comments }
         </ul>
-        <div className="comment-data">
+        <div className="comment-li">
           <div className="comment-textarea">
             <textarea
               id="description"
-              value={this.state.commentText}
+              value={this.state.body}
               placeholder="Add new comment"
               onChange={this.update("body")}>
             </textarea>
